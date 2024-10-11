@@ -8,4 +8,5 @@ export type ProductType = {
   soldTimes: number;
   imageUrl: string;
   colors?: string[];
+  isNew?: boolean;
 };

@@ -9,7 +9,7 @@ import SectionTitleGenerator from "./Titles";
 export default function BestSellingProducts() {
   return (
     <div
-      className={`w-full py-20 flex flex-col  items-center border-b border-gray-300 ${interFont.className}`}
+      className={`w-full py-20 flex flex-col  items-center  ${interFont.className}`}
     >
       <SectionTitleGenerator
         primaryText={"This Month"}

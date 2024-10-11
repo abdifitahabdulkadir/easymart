@@ -12,12 +12,15 @@ export default function ProductItem({
     rating,
     currentPrice,
     originalPrice,
+    colors,
   },
+  priceRatingClassName,
 }: {
   item: ProductType;
+  priceRatingClassName?: string;
 }) {
   return (
-    <div className="w-full  flex flex-col min-h-60 max-h-fit bg-white rounded-[4px] shadow-sm">
+    <div className="w-full  flex flex-col min-h-60 max-h-fit bg-white rounded-[4px] shadow-sm shadow-secondaryWhiteColorThree">
       <div className="relative flex items-center justify-center  bg-secondaryWhiteColorOne px-5 py-4 rounded-[4px] h-40">
         {discount && (
           <div className="w-[55px] h-[26px] rounded-[4px] absolute top-2 left-2 text-white flex items-center justify-center bg-teritiaryOrangeColor text-xs font-light italic">
@@ -58,29 +61,48 @@ export default function ProductItem({
       {/* product descprions */}
       <div className="flex flex-col gap-y-1 py-3 pl-1">
         <div className="flex items-start gap-y-2">
-          <h3 className="font-medium text-base text-black line-clamp-1 ">
+          <h3 className="font-medium  text-base text-black line-clamp-1  w-full">
             {name}
           </h3>
         </div>
+        <div className={`${priceRatingClassName}`}>
+          <div className="text-base flex items-center gap-x-4">
+            {currentPrice !== 0 && (
+              <span className="text-teritiaryOrangeColor ">{`\$${currentPrice}`}</span>
+            )}
+            {originalPrice !== 0 && (
+              <span className="text-primaryGrayColorTwo line-through ">{`\$${originalPrice}`}</span>
+            )}
+          </div>
 
-        <div className="text-base flex items-center gap-x-4">
-          {currentPrice !== 0 && (
-            <span className="text-teritiaryOrangeColor ">{`\$${currentPrice}`}</span>
-          )}
-          {originalPrice !== 0 && (
-            <span className="text-primaryGrayColorTwo line-through ">{`\$${originalPrice}`}</span>
-          )}
+          {/* rating */}
+          <div className={`flex items-center gap-x-2`}>
+            <div className="flex items-center gap-x-1">
+              {Array.from({ length: rating }, (_, index) => {
+                return (
+                  <FaStar key={index} className="text-starColor h-3 w-3" />
+                );
+              })}
+            </div>
+            <span className="text-primaryGrayColorTwo">{`(${soldTimes})`}</span>
+          </div>
         </div>
-
-        {/* rating */}
-        <div className="flex items-center gap-x-3">
-          <div className="flex items-center gap-x-1">
-            {Array.from({ length: rating }, (_, index) => {
-              return <FaStar key={index} className="text-starColor h-4 w-4" />;
+        {/* colors */}
+        {colors && (
+          <div className="flex gap-x-1 items-center ">
+            {colors?.map((color) => {
+              return (
+                <div
+                  style={{
+                    backgroundColor: color,
+                  }}
+                  key={color}
+                  className={`rounded-full w-4 h-4 hover:scale-[1.2] hover:border-2 cursor-pointer hover:border-green-600 transition-all duration-150`}
+                ></div>
+              );
             })}
           </div>
-          <span className="text-primaryGrayColorTwo">{`(${soldTimes})`}</span>
-        </div>
+        )}
       </div>
     </div>
   );

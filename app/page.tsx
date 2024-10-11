@@ -1,9 +1,11 @@
 import Announcement from "@/components/Announcement";
 import BestSellingProducts from "@/components/BestSellingProducts";
 import Categories from "@/components/Categories";
+import ExploreProducts from "@/components/ExploreProducts";
 import FlashSales from "@/components/FlashSales";
 import Hero from "@/components/Hero";
 import Navbar from "@/components/Navbar";
+import NewArrivalProducts from "@/components/NewArrivalProducts";
 
 export default function Home() {
   return (
@@ -19,6 +21,8 @@ export default function Home() {
         <FlashSales />
         <Categories />
         <BestSellingProducts />
+        <ExploreProducts />
+        <NewArrivalProducts />
       </div>
     </main>
   );

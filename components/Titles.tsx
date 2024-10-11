@@ -38,7 +38,7 @@ export default function SectionTitleGenerator({
 }: {
   primaryText: string;
   secondaryText: string;
-  children: React.ReactNode;
+  children?: React.ReactNode;
 }) {
   return (
     <div className="flex flex-col items-start w-full">
