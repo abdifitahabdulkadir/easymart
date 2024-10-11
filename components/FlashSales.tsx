@@ -1,5 +1,5 @@
 import { flashItems } from "@/lib";
-import { Inter } from "next/font/google";
+import { interFont } from "@/lib/font";
 import { IoMdArrowForward } from "react-icons/io";
 import { IoArrowBackOutline } from "react-icons/io5";
 import Button from "./Button";
@@ -7,13 +7,10 @@ import ProductItem from "./ProductItem";
 import Timer from "./Timer";
 import { PrimaryTitleGenerator, SecondaryTitleGenerator } from "./Titles";
 
-const interFont = Inter({
-  subsets: ["latin"],
-});
 export default function FlashSales() {
   return (
     <div
-      className={`w-full py-20 flex flex-col items-center justify-center   ${interFont.className}`}
+      className={`w-full py-20 flex flex-col items-center justify-center border-b border-gray-300   ${interFont.className}`}
     >
       <div className="flex flex-col justify-center">
         <PrimaryTitleGenerator title={"Today's"} className=" px-3 lg:px-0" />

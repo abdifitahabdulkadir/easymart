@@ -1,4 +1,5 @@
 import Announcement from "@/components/Announcement";
+import Categories from "@/components/Categories";
 import FlashSales from "@/components/FlashSales";
 import Hero from "@/components/Hero";
 import Navbar from "@/components/Navbar";
@@ -14,8 +15,8 @@ export default function Home() {
           <Hero />
         </div>
 
-        {/* flashsales */}
         <FlashSales />
+        <Categories />
       </div>
     </main>
   );
