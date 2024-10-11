@@ -26,7 +26,7 @@ export default function ProductItem({
         )}
 
         {/* image */}
-        <div className="w-[60%] h-fit">
+        <div className="w-[60%] h-[9rem]">
           <Image
             src={imageUrl}
             height={100}

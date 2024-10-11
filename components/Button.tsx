@@ -1,9 +1,12 @@
 interface ProsType {
   text: string;
+  className?: string;
 }
-export default function Button({ text }: ProsType) {
+export default function Button({ text, className }: ProsType) {
   return (
-    <button className="px-4 mt-7 hover:shadow-lg shadow-white hover:bg-secondaryLightGraryColor hover:text-black transition-all duration-500 hover:-translate-y-[10px] cursor-pointer rounded-[4px] text-white py-3 text-center bg-teritiaryOrangeColor">
+    <button
+      className={`px-4  shadow-white  cursor-pointer rounded-[4px] text-white py-2 text-center  ${className}`}
+    >
       {text}
     </button>
   );

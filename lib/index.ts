@@ -74,7 +74,8 @@ export const bestSellingProducts: ProductType[] = [
   {
     id: 4,
     name: "Small BookSelf",
-    originalPrice: 360,
+    currentPrice: 360,
+    originalPrice: 0,
     rating: 5,
     soldTimes: 65,
     imageUrl: "/bestSellingImages/desk.svg",
