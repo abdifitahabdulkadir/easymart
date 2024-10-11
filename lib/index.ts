@@ -69,7 +69,7 @@ export const bestSellingProducts: ProductType[] = [
     currentPrice: 160,
     rating: 4,
     soldTimes: 99,
-    imageUrl: "/flashImages/cd.svg",
+    imageUrl: "/bestSellingImages/cd.svg",
   },
   {
     id: 4,
@@ -77,7 +77,7 @@ export const bestSellingProducts: ProductType[] = [
     originalPrice: 360,
     rating: 5,
     soldTimes: 65,
-    imageUrl: "/flashImages/desk.svg",
+    imageUrl: "/bestSellingImages/desk.svg",
   },
 ];
 

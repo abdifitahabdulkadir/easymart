@@ -17,11 +17,13 @@ export default function ProductItem({
   item: ProductType;
 }) {
   return (
-    <div className="w-full max-w-[90%] flex flex-col min-h-60 max-h-fit bg-white rounded-[4px] shadow-sm">
+    <div className="w-full  flex flex-col min-h-60 max-h-fit bg-white rounded-[4px] shadow-sm">
       <div className="relative flex items-center justify-center  bg-secondaryWhiteColorOne px-5 py-4 rounded-[4px] h-40">
-        <div className="w-[55px] h-[26px] rounded-[4px] absolute top-2 left-2 text-white flex items-center justify-center bg-teritiaryOrangeColor text-xs font-light italic">
-          <span>{`-${discount}%`}</span>
-        </div>
+        {discount && (
+          <div className="w-[55px] h-[26px] rounded-[4px] absolute top-2 left-2 text-white flex items-center justify-center bg-teritiaryOrangeColor text-xs font-light italic">
+            <span>{`-${discount}%`}</span>
+          </div>
+        )}
 
         {/* image */}
         <div className="w-[60%] h-fit">
@@ -74,7 +76,7 @@ export default function ProductItem({
         <div className="flex items-center gap-x-3">
           <div className="flex items-center gap-x-1">
             {Array.from({ length: rating }, (_, index) => {
-              return <FaStar className="text-starColor h-4 w-4" />;
+              return <FaStar key={index} className="text-starColor h-4 w-4" />;
             })}
           </div>
           <span className="text-primaryGrayColorTwo">{`(${soldTimes})`}</span>
