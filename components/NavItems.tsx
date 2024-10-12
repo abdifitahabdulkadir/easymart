@@ -3,7 +3,7 @@ import Link from "next/link";
 const navItems = [
   {
     name: "Home",
-    href: "#",
+    href: "/",
   },
   {
     name: "Contact",
@@ -15,7 +15,7 @@ const navItems = [
   },
   {
     name: "SignUp",
-    href: "#signup",
+    href: "/signup",
   },
 ];
 interface PropType {

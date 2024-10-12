@@ -1,3 +1,6 @@
+import Announcement from "@/components/Announcement";
+import Footer from "@/components/Footer";
+import Navbar from "@/components/Navbar";
 import { popois } from "@/lib/font";
 import type { Metadata } from "next";
 import "./globals.css";
@@ -17,7 +20,11 @@ export default function RootLayout({
       <body
         className={`antialiased ${popois.className} bg-primaryWhiteColor text-black`}
       >
+        <Navbar>
+          <Announcement />
+        </Navbar>
         {children}
+        <Footer />
       </body>
     </html>
   );
