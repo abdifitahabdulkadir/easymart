@@ -34,6 +34,7 @@ export default function Hero() {
             <Image
               src={"/heroImages/iphone.svg"}
               width={100}
+              priority
               height={100}
               alt="hero image"
               className="w-full h-full"

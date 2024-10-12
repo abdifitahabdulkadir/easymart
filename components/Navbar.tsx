@@ -7,6 +7,7 @@ import { GrFavorite } from "react-icons/gr";
 import { MdMenu } from "react-icons/md";
 import MobileVersionNavbar from "./MobileVersionNavbar";
 import NavItems from "./NavItems";
+import UserIcon from "./UserIcon";
 interface ProsType {
   children: React.ReactNode;
 }
@@ -37,6 +38,7 @@ export default function Navbar({ children }: ProsType) {
           <div className="flex items-center justify-center gap-x-4">
             <GrFavorite className="w-4 h-4 md:scale-[1.1] mt-1 text-black/60 " />
             <BsCart2 className="w-4 h-4 md:scale-[1.1]  text-black/60" />
+            <UserIcon />
           </div>
         </div>
 
