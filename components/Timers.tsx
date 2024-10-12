@@ -2,12 +2,14 @@
 import { useTimer } from "@/hooks/useTimer";
 import { popois } from "@/lib/font";
 import DisplayTimerItemValue from "./DisplayTimeritem";
-
-export function FlashItemsTimer() {
+interface ProsType {
+  className?: string;
+}
+export function FlashItemsTimer({ className }: ProsType) {
   const { daysLeft, hoursLeft, minutesLeft, seconsLeft } = useTimer();
   return (
     <div
-      className={`text-black gap-x-2 lg:gap-x-5 flex-wrap flex items-center lg:justify-between justify-around `}
+      className={`text-black gap-x-2 lg:gap-x-5 flex-wrap flex items-center  justify-around  ${className} w-fit`}
     >
       <DisplayTimerItemValue isLastOne={false} title="Days" value={daysLeft} />
       <DisplayTimerItemValue

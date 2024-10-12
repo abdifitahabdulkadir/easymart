@@ -6,7 +6,7 @@ import { HiOutlineComputerDesktop } from "react-icons/hi2";
 import { LuGamepad } from "react-icons/lu";
 import { PiHeadphones } from "react-icons/pi";
 import DoubleArrows from "./DoubleArrows";
-import SectionTitleGenerator from "./Titles";
+import { PrimaryTitleGenerator, SecondaryTitleGenerator } from "./Titles";
 
 const categores = [
   {
@@ -63,20 +63,21 @@ export default function Categories() {
     <div
       className={`w-full py-20 flex flex-col   items-center border-b border-gray-300 ${interFont.className}`}
     >
-      <SectionTitleGenerator
-        primaryText={"Categories"}
-        secondaryText={"Browse By Category"}
-      >
-        <DoubleArrows />
-      </SectionTitleGenerator>
+      <div className="flex w-full flex-col gap-y-3">
+        <PrimaryTitleGenerator title={"Categories"} />
+        <div className="w-full flex items-center justify-between">
+          <SecondaryTitleGenerator title={"Browse By Category"} />
+          <DoubleArrows />
+        </div>
+      </div>
 
       {/* cateories items*/}
-      <div className="flex items-center gap-y-4 flex-wrap lg:flex-nowrap justify-between w-full mt-8 gap-x-4 px-5 md:px-3">
+      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-y-3 gap-x-3 items-center flex-wrap  border w-full mt-8 ">
         {categores.map(({ id, name, icon, isSelected }) => {
           return (
             <div
               key={id}
-              className={`border-2  cursor-pointer min-w-fit min-h-fit w-40 h-40 items-center justify-center flex flex-col gap-y-2  rounded-[4px] border-black/20 hover:bg-teritiaryOrangeColor  transition-all  duration-300 group hover:border-none  ${
+              className={`border-2  cursor-pointer min-w-fit min-h-fit  h-40 items-center justify-center flex flex-col gap-y-2  rounded-[4px] border-black/20 hover:bg-teritiaryOrangeColor  transition-all  duration-300 group hover:border-none  ${
                 isSelected && " bg-teritiaryOrangeColor text-white border-none"
               }`}
             >

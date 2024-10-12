@@ -9,11 +9,11 @@ import NewArrivalProducts from "@/components/NewArrivalProducts";
 
 export default function Home() {
   return (
-    <main>
+    <main className="w-full overflow-x-hidden">
       <Navbar>
         <Announcement />
       </Navbar>
-      <div className="w-full h-full    lg:px-20 flex items-center justify-center flex-col">
+      <div className="w-full h-full  px-3  lg:px-20 flex items-center justify-center flex-col">
         <div className="h-[80vh] lg:h-[60vh]">
           <Hero />
         </div>
