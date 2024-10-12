@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useState } from "react";
 import { BsCart2 } from "react-icons/bs";
 import { FaSearch } from "react-icons/fa";
@@ -37,7 +38,10 @@ export default function Navbar({ children }: ProsType) {
           </form>
           <div className="flex items-center justify-center gap-x-4">
             <GrFavorite className="w-4 h-4 md:scale-[1.1] mt-1 text-black/60 " />
-            <BsCart2 className="w-4 h-4 md:scale-[1.1]  text-black/60" />
+            <Link href={"/cart"}>
+              <BsCart2 className="w-4 h-4 md:scale-[1.1]  text-black/60" />
+            </Link>
+
             <UserIcon />
           </div>
         </div>

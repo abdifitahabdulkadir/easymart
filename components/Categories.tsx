@@ -72,11 +72,11 @@ export default function Categories() {
       </div>
 
       {/* cateories items*/}
-      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-y-3 gap-x-3 items-center flex-wrap  border w-full mt-8 ">
-        {categores.map(({ id, name, icon, isSelected }) => {
+      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-y-3 gap-x-3 items-center flex-wrap   w-full mt-8 ">
+        {categores.map(({ name, icon, isSelected }, index) => {
           return (
             <div
-              key={id}
+              key={index}
               className={`border-2  cursor-pointer min-w-fit min-h-fit  h-40 items-center justify-center flex flex-col gap-y-2  rounded-[4px] border-black/20 hover:bg-teritiaryOrangeColor  transition-all  duration-300 group hover:border-none  ${
                 isSelected && " bg-teritiaryOrangeColor text-white border-none"
               }`}

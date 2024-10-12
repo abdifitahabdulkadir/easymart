@@ -23,8 +23,8 @@ export default function BestSellingProducts() {
       </div>
 
       <div className="grid md:grid-cols-3 place-items-center px-10 md:px-3 lg:grid-cols-4 py-5 gap-x-3 gap-y-3 w-full">
-        {bestSellingProducts.map((item) => {
-          return <ProductItem key={item.id} item={item} />;
+        {bestSellingProducts.map((item, index) => {
+          return <ProductItem key={index} item={item} />;
         })}
       </div>
 

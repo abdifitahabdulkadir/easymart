@@ -162,3 +162,48 @@ export const exploreProducts: ProductType[] = [
     colors: ["#000000", "#DB4444"],
   },
 ];
+
+export const wishlistProducts: ProductType[] = [
+  {
+    id: 1,
+    name: "Gucci duffle bag",
+    originalPrice: 1160,
+    currentPrice: 960,
+    rating: 4,
+    addedToWishlist: true,
+    soldTimes: 65,
+    imageUrl: "/bestSellingImages/bag.svg",
+  },
+  {
+    id: 2,
+    name: "RGB liquid CPU Cooler",
+    originalPrice: 0,
+    currentPrice: 160,
+    discount: 35,
+    addedToWishlist: true,
+    rating: 4,
+    soldTimes: 99,
+    imageUrl: "/bestSellingImages/cd.svg",
+  },
+
+  {
+    id: 3,
+    name: "GP11 Shooter USB Gamepad",
+    currentPrice: 550,
+    originalPrice: 0,
+    rating: 4,
+    soldTimes: 55,
+    addedToWishlist: true,
+    imageUrl: "/productImages/gamepad.svg",
+  },
+  {
+    id: 4,
+    name: "Quilted Satin Jacket",
+    currentPrice: 750,
+    rating: 4,
+    originalPrice: 0,
+    soldTimes: 55,
+    addedToWishlist: true,
+    imageUrl: "/productImages/tshirt.svg",
+  },
+];

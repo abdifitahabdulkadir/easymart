@@ -1,16 +1,19 @@
 import { exploreProducts } from "@/lib";
 import Button from "./Button";
+import DoubleArrows from "./DoubleArrows";
 import ProductItem from "./ProductItem";
+import { PrimaryTitleGenerator, SecondaryTitleGenerator } from "./Titles";
 
 export default function ExploreProducts() {
   return (
     <div className="flex flex-col items-center justify-center min-w-full py-10 ">
-      {/* <SectionTitleGenerator
-        primaryText={"Our Products"}
-        secondaryText={"Explore Our Products"}
-      >
-        <DoubleArrows />
-      </SectionTitleGenerator> */}
+      <div className="w-full flex flex-col gap-y-4 justify-start mb-5">
+        <PrimaryTitleGenerator title="Our Products" />
+        <div className="w-full flex items-center justify-between gap-x-3">
+          <SecondaryTitleGenerator title="Explore Our Products" />
+          <DoubleArrows />
+        </div>
+      </div>
 
       <div className="w-full grid grid-cols-1 px-10 sm:px-4 lg:px-0 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 mt-7">
         {exploreProducts.map((item) => {

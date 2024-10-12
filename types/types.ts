@@ -9,4 +9,6 @@ export type ProductType = {
   imageUrl: string;
   colors?: string[];
   isNew?: boolean;
+  addedToCart?: boolean;
+  addedToWishlist?: boolean;
 };

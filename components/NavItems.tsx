@@ -31,7 +31,6 @@ export default function NavItems({ className }: PropType) {
       className={`flex  items-center gap-x-10 gap-y-2  w-fit px-5 ${className}`}
     >
       {navItems.map(({ href, name }, index) => {
-        console.log(pathName, href);
         return (
           <li key={index} className="font-normal">
             <Link

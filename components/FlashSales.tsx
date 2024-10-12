@@ -24,10 +24,10 @@ export default function FlashSales() {
       </div>
 
       <div className="grid md:grid-cols-2 lg:grid-cols-4 py-5 w-full gap-x-3 gap-y-2 px-10 md:px-3 ">
-        {flashItems.map((item) => {
+        {flashItems.map((item, index) => {
           return (
             <ProductItem
-              key={item.id}
+              key={index}
               item={item}
               priceRatingClassName="flex flex-row lg:flex-col gap-y-1 gap-x-3 w-full justify-around"
             />
