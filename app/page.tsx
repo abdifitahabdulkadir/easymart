@@ -9,7 +9,7 @@ import NewArrivalProducts from "@/components/NewArrivalProducts";
 
 export default function Home() {
   return (
-    <main className="w-full overflow-x-hidden">
+    <main className="w-full overflow-x-hidden" id="main">
       <Navbar>
         <Announcement />
       </Navbar>
