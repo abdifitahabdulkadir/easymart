@@ -28,7 +28,7 @@ const items = [
   {
     id: 3,
     name: "MONEY BACK GUARANTEE",
-    des: "We reurn money within 30 days",
+    des: "We return money within 30 days",
     icon: (
       <SiAdguard className="group-hover:scale-[1.4]  group-hover:text-teritiaryOrangeColor transition-all duration-300 " />
     ),

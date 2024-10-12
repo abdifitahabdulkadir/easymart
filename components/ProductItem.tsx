@@ -20,7 +20,7 @@ export default function ProductItem({
   priceRatingClassName?: string;
 }) {
   return (
-    <div className="w-full  flex flex-col min-h-60 max-h-fit bg-white rounded-[4px] shadow-sm shadow-secondaryWhiteColorThree">
+    <div className="w-full hover:scale-[1.02] transition-scale duration-300 cursor-pointer flex flex-col  min-h-60 max-h-fit bg-white rounded-[4px] shadow-sm shadow-secondaryWhiteColorThree">
       <div className="relative flex items-center justify-center  bg-secondaryWhiteColorOne px-5 py-4 rounded-[4px] h-40">
         {discount && (
           <div className="w-[55px] h-[26px] rounded-[4px] absolute top-2 left-2 text-white flex items-center justify-center bg-teritiaryOrangeColor text-xs font-light italic">
