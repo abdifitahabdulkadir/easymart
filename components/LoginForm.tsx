@@ -26,10 +26,10 @@ export default function LoginForm({ handleClick }: ProsType) {
           className="border-b-2 border-black/30 py-2 px-3ring-black/30 text-black placeholder:text-black/30 placeholder:text-sm  outline-none w-full lg:w-[70%]"
         />
         <div className="flex flex-wrap gap-y-3 lg:flex-nowrap items-center justify-between gap-x-4 w-full ">
-          <button className="w-full py-4 flex items-center justify-center text-white bg-teritiaryOrangeColor rounded-[4px] hover:bg-secondaryLightGraryColor hover:text-black hover:scale-[0.99] transition-all duration-300 cursor-pointer">
+          <button className="w-full py-4 flex items-center justify-center text-white bg-teritiaryOrangeColor rounded-[4px] hover:bg-secondaryLightGraryColor hover:text-black  transition-all duration-300 cursor-pointer hover:scale-[.89]">
             Login
           </button>
-          <button className="w-full py-4 flex items-center justify-center text-black  rounded-[4px] border border-black/30 gap-x-2 hover:bg-secondaryLightGraryColor cursor-pointer transition-all duration-200 hover:border-none hover:scale-[0.99]">
+          <button className="w-full py-4 flex items-center justify-center text-black  rounded-[4px] border border-black/30 gap-x-2 hover:bg-secondaryLightGraryColor cursor-pointer transition-all duration-200 hover:scale-[.89]">
             <FcGoogle className="scale-[1.4]" />
             with Google
           </button>

@@ -14,11 +14,7 @@ export default function UserIcon() {
 
   return (
     <div className="bg-teritiaryOrangeColor text-white flex items-center justify-center rounded-full p-2 w-7 h-7 relative cursor-pointer  ">
-      <IoPerson
-        className="h-full w-full scale-[1.4]"
-        onMouseEnter={toggle}
-        onClick={toggle}
-      />
+      <IoPerson className="h-full w-full scale-[1.4]" onClick={toggle} />
       {showDropdown && (
         <div
           onMouseLeave={toggle}
