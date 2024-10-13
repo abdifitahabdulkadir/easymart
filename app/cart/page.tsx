@@ -1,6 +1,7 @@
 import CartProductItem from "@/components/CartProductItem";
 import { bestSellingProducts } from "@/lib";
 import { popois } from "@/lib/font";
+import Link from "next/link";
 import { AiFillProduct } from "react-icons/ai";
 import { BsGrid1X2Fill } from "react-icons/bs";
 import { RiMoneyDollarCircleFill } from "react-icons/ri";
@@ -63,9 +64,12 @@ export default function CartPage() {
             value="$1750"
             includeBorder={false}
           />
-          <button className="px-2 py-3 bg-teritiaryOrangeColor text-white flex items-center justify-center rounded-[4px] hover:bg-teritiaryGreenColor text-[.6rem]  transition-all duration-300">
+          <Link
+            href={"/checkout"}
+            className="px-2 py-3 bg-teritiaryOrangeColor text-white flex items-center justify-center rounded-[4px] hover:bg-teritiaryGreenColor text-[.6rem]  transition-all duration-300"
+          >
             Proceed To Checkout
-          </button>
+          </Link>
         </div>
       </div>
     </div>
