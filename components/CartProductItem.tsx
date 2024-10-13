@@ -7,8 +7,8 @@ export default function CartProductItem({
   item: ProductType;
 }) {
   return (
-    <div className="grid grid-cols-4 w-full gap-x-3 h-[5rem] shadow-md shadow-gray-100 py-8   place-content-center rounded-[4px] px-2">
-      <div className="flex items-center  w-full">
+    <div className="grid grid-cols-4 w-full gap-x-3 h-[7rem] shadow-md shadow-gray-100 py-8   place-content-center rounded-[4px] px-1">
+      <div className="flex items-center gap-x-3  w-full">
         <Image
           src={imageUrl}
           width={100}
@@ -16,9 +16,9 @@ export default function CartProductItem({
           alt="cart item image"
           loading="eager"
           priority
-          className="w-[4rem] h-[4rem]"
+          className="w-[2rem] h-[rem] md:w-[4rem] md:h-[4rem]"
         />
-        <h6 className="font-normal text-[.7rem] w-full flex items-center justify-center ">
+        <h6 className="font-normal text-[.5rem] sm:text-[.7rem] w-full flex items-center justify-center ">
           {name}
         </h6>
       </div>
