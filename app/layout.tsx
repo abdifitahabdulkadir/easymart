@@ -17,9 +17,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body
-        className={`antialiased ${popois.className} bg-primaryWhiteColor text-black`}
-      >
+      <body className={`antialiased ${popois.className} bg-white text-black`}>
         <Navbar>
           <Announcement />
         </Navbar>

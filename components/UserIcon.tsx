@@ -20,7 +20,7 @@ export default function UserIcon() {
           onMouseLeave={toggle}
           className="w-[13rem] absolute right-[20%] top-10 z-50 h-fit bg-white rounded-[4px] shadow-md py-5 px-2 text-black flex flex-col gap-y-4"
         >
-          <IconBuilder text="Manage My Account" href="">
+          <IconBuilder text="Manage My Account" href="/account">
             <BsPersonFill className="scale-[1.4]" />
           </IconBuilder>
           <IconBuilder text="My Order" href="">
