@@ -1,5 +1,6 @@
 import { ProductType } from "@/types/types";
 import Image from "next/image";
+import { RxCaretDown, RxCaretUp } from "react-icons/rx";
 
 export default function CartProductItem({
   item: { imageUrl, name, currentPrice },
@@ -25,17 +26,19 @@ export default function CartProductItem({
       <h5 className="w-full flex items-center justify-center">
         {`$${currentPrice}`}
       </h5>
-      <p className="w-full flex items-center justify-center">
-        <form action="">
-          <input
-            type="number"
-            placeholder="1"
-            max={10}
-            min={1}
-            className="border border-black/40 text-black  rounded-[4px] outline-none "
-          />
-        </form>
-      </p>
+
+      <form action="" className="w-[72px] h-[44px] rounded-[4px] relative">
+        <input
+          type="text"
+          placeholder="01"
+          max={10}
+          min={1}
+          className="border-[1.5px] border-black/40 text-black  rounded-[4px] outline-none w-full h-full px-2"
+        />
+        <RxCaretUp className="absolute top-1 right-1 cursor-pointer hover:text-teritiaryOrangeColor duration-200 transition-colors" />
+        <RxCaretDown className="absolute bottom-1 right-1 cursor-pointer hover:text-teritiaryOrangeColor duration-200 transition-colors" />
+      </form>
+
       <h5 className="w-full flex items-center justify-center">{`$500`}</h5>
     </div>
   );
