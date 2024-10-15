@@ -1,6 +1,6 @@
 export default function CheckoutForm() {
   return (
-    <form className="flex flex-col gap-y-7 py-2 mt-6">
+    <form className="flex flex-col gap-y-7  py-2 mt-6">
       <label
         htmlFor="name"
         className="font-extralight text-sm flex flex-col gap-y-1 "
