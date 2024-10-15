@@ -14,7 +14,7 @@ const navItems = [
   },
   {
     name: "About",
-    href: "#about",
+    href: "/about",
   },
   {
     name: "SignUp",
