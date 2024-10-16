@@ -1,5 +1,6 @@
 import { ProductType } from "@/types/types";
 import Image from "next/image";
+import Link from "next/link";
 import { FaStar } from "react-icons/fa";
 import { MdDelete, MdFavoriteBorder, MdRemoveRedEye } from "react-icons/md";
 import AddToCartButton from "./AddToCartButton";
@@ -12,6 +13,7 @@ export default function ProductItem({
     soldTimes,
     discount,
     isNew,
+    id,
     rating,
     currentPrice,
     originalPrice,
@@ -19,33 +21,36 @@ export default function ProductItem({
     addedToCart,
     addedToWishlist,
   },
+  categoryName,
   priceRatingClassName,
 }: {
   item: ProductType;
+  categoryName: string;
   priceRatingClassName?: string;
 }) {
   return (
-    <div
-      className={`w-full  cursor-pointer flex flex-col  min-h-60 max-h-fit bg-white rounded-[4px] shadow-sm shadow-secondaryWhiteColorThree ${
+    <Link
+      href={`/products/${categoryName}/${id}`}
+      className={`flex max-h-fit min-h-60 w-full cursor-pointer flex-col rounded-[4px] bg-white shadow-sm shadow-secondaryWhiteColorThree ${
         !addedToWishlist &&
         !addedToCart &&
-        " hover:scale-[1.02] transition-scale duration-300 "
+        "transition-scale duration-300 hover:scale-[1.02]"
       }`}
     >
-      <div className="relative flex items-center justify-center  bg-secondaryWhiteColorOne  px-5 py-4 rounded-[4px] h-40">
+      <div className="relative flex h-40 items-center justify-center rounded-[4px] bg-secondaryWhiteColorOne px-5 py-4">
         {discount && (
-          <div className="w-[55px] h-[26px] rounded-[4px] absolute top-2 left-2 text-white flex items-center justify-center bg-teritiaryOrangeColor text-xs font-light italic">
+          <div className="absolute left-2 top-2 flex h-[26px] w-[55px] items-center justify-center rounded-[4px] bg-teritiaryOrangeColor text-xs font-light italic text-white">
             <span>{`-${discount}%`}</span>
           </div>
         )}
         {isNew && (
-          <div className="w-[55px] h-[26px] rounded-[4px] absolute top-2 left-2 text-white flex items-center justify-center bg-teritiaryGreenColor text-xs font-light italic">
+          <div className="absolute left-2 top-2 flex h-[26px] w-[55px] items-center justify-center rounded-[4px] bg-teritiaryGreenColor text-xs font-light italic text-white">
             <span>New</span>
           </div>
         )}
 
         {/* image */}
-        <div className="w-[60%] h-[6rem] pb-3">
+        <div className="h-[6rem] w-[60%] pb-3">
           <Image
             src={imageUrl}
             height={100}
@@ -53,40 +58,40 @@ export default function ProductItem({
             loading="eager"
             alt="image of item"
             width={100}
-            className="w-full h-full"
+            className="h-full w-full"
           />
         </div>
 
         {/* favorite icons */}
         {!addedToWishlist && (
-          <div className="absolute gap-y-2 top-2 h-fit right-2 flex flex-col items-center justify-around">
-            <div className="bg-white hover:bg-secondaryWhiteColorTwo  cursor-pointer text-gray-500 rounded-full p-2 flex items-center justify-center group">
+          <div className="absolute right-2 top-2 flex h-fit flex-col items-center justify-around gap-y-2">
+            <div className="group flex cursor-pointer items-center justify-center rounded-full bg-white p-2 text-gray-500 hover:bg-secondaryWhiteColorTwo">
               <MdFavoriteBorder
                 name="add Favorites"
-                className=" group-hover:scale-[1.12] transition-all duration-500"
+                className="transition-all duration-500 group-hover:scale-[1.12]"
               />
             </div>
-            <div className="bg-white hover:bg-secondaryWhiteColorTwo  cursor-pointer text-gray-500 rounded-full p-2 flex items-center justify-center group">
+            <div className="group flex cursor-pointer items-center justify-center rounded-full bg-white p-2 text-gray-500 hover:bg-secondaryWhiteColorTwo">
               <MdRemoveRedEye
                 name="hide"
-                className=" group-hover:scale-[1.12] transition-all duration-500"
+                className="transition-all duration-500 group-hover:scale-[1.12]"
               />
             </div>
           </div>
         )}
 
         {addedToWishlist && (
-          <div className="absolute gap-y-2 top-2 h-fit right-2 flex flex-col items-center justify-around">
-            <div className="bg-white hover:bg-secondaryWhiteColorTwo  cursor-pointer text-gray-500 rounded-full p-2 flex items-center justify-center group">
+          <div className="absolute right-2 top-2 flex h-fit flex-col items-center justify-around gap-y-2">
+            <div className="group flex cursor-pointer items-center justify-center rounded-full bg-white p-2 text-gray-500 hover:bg-secondaryWhiteColorTwo">
               <MdDelete
                 name="add Favorites"
-                className=" group-hover:scale-[1.12] transition-all duration-500"
+                className="transition-all duration-500 group-hover:scale-[1.12]"
               />
             </div>
           </div>
         )}
 
-        <div className="w-full flex items-center gap-x-2 absolute bottom-1 px-3 ">
+        <div className="absolute bottom-1 flex w-full items-center gap-x-2 px-3">
           {!addedToCart && <AddToCartButton showIcon={true} />}
           {!addedToWishlist && <AddToWishList />}
         </div>
@@ -95,18 +100,18 @@ export default function ProductItem({
       {/* product descprions */}
       <div className="flex flex-col gap-y-1 py-3 pl-1">
         <div className="flex items-start gap-y-2">
-          <h3 className="font-medium  text-base text-black line-clamp-1  w-full">
+          <h3 className="line-clamp-1 w-full text-base font-medium text-black">
             {name}
           </h3>
         </div>
         <div className={`${priceRatingClassName}`}>
-          <div className="text-base flex items-center gap-x-4">
+          <div className="flex items-center gap-x-4 text-base">
             {currentPrice !== 0 && (
-              <span className="text-teritiaryOrangeColor ">{`\$${currentPrice}`}</span>
+              <span className="text-teritiaryOrangeColor">{`\$${currentPrice}`}</span>
             )}
 
             {originalPrice !== 0 && !addedToWishlist && (
-              <span className="text-primaryGrayColorTwo line-through ">{`\$${originalPrice}`}</span>
+              <span className="text-primaryGrayColorTwo line-through">{`\$${originalPrice}`}</span>
             )}
           </div>
 
@@ -116,7 +121,7 @@ export default function ProductItem({
               <div className="flex items-center gap-x-1">
                 {Array.from({ length: rating }, (_, index) => {
                   return (
-                    <FaStar key={index} className="text-starColor h-3 w-3" />
+                    <FaStar key={index} className="h-3 w-3 text-starColor" />
                   );
                 })}
               </div>
@@ -126,7 +131,7 @@ export default function ProductItem({
         </div>
         {/* colors */}
         {colors && (
-          <div className="flex gap-x-1 items-center ">
+          <div className="flex items-center gap-x-1">
             {colors?.map((color) => {
               return (
                 <div
@@ -134,13 +139,13 @@ export default function ProductItem({
                     backgroundColor: color,
                   }}
                   key={color}
-                  className={`rounded-full w-4 h-4 hover:scale-[1.2] hover:border-2 cursor-pointer hover:border-green-600 transition-all duration-150`}
+                  className={`h-4 w-4 cursor-pointer rounded-full transition-all duration-150 hover:scale-[1.2] hover:border-2 hover:border-green-600`}
                 ></div>
               );
             })}
           </div>
         )}
       </div>
-    </div>
+    </Link>
   );
 }
