@@ -27,7 +27,7 @@ export default function FlashSales() {
         {flashItems.map((item, index) => {
           return (
             <ProductItem
-              categoryName="flash Products"
+              categoryName="flash-Products"
               key={index}
               item={item}
               priceRatingClassName="flex flex-row lg:flex-col gap-y-1 gap-x-3 w-full justify-around"

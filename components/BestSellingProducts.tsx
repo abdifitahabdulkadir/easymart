@@ -28,7 +28,7 @@ export default function BestSellingProducts() {
       <div className="grid w-full place-items-center gap-x-3 gap-y-3 px-10 py-5 md:grid-cols-3 md:px-3 lg:grid-cols-4">
         {bestSellingProducts.map((item, index) => {
           return (
-            <ProductItem categoryName="best Selling" key={index} item={item} />
+            <ProductItem categoryName="best-Selling" key={index} item={item} />
           );
         })}
       </div>

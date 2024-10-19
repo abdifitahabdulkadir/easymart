@@ -8,9 +8,9 @@ interface ProsType {
   width: number;
   height: number;
   alt: string;
-  magnifierHeight: number;
-  magnifierWidth: number;
-  zoomLevel: number;
+  magnifierHeight?: number;
+  magnifierWidth?: number;
+  zoomLevel?: number;
 }
 
 export default function ImageMagnifier({
@@ -19,39 +19,36 @@ export default function ImageMagnifier({
   width,
   height,
   alt,
-  magnifierHeight,
-  magnifierWidth,
-  zoomLevel,
+  magnifierHeight = 250,
+  magnifierWidth = 250,
+  zoomLevel = 3,
 }: ProsType) {
   const [showMagnifier, setShowMagnifier] = useState(false);
   const [[imgWidth, imgHeight], setSize] = useState([0, 0]);
   const [[x, y], setXY] = useState([0, 0]);
 
-  const mouseEnter = (e) => {
+  const mouseEnter = (e: React.MouseEvent<HTMLImageElement>) => {
     const el = e.currentTarget;
-
     const { width, height } = el.getBoundingClientRect();
     setSize([width, height]);
     setShowMagnifier(true);
   };
 
-  const mouseLeave = (e) => {
+  const mouseLeave = (e: React.MouseEvent<HTMLImageElement>) => {
     e.preventDefault();
     setShowMagnifier(false);
   };
 
-  const mouseMove = (e) => {
+  const mouseMove = (e: React.MouseEvent<HTMLImageElement>) => {
     const el = e.currentTarget;
     const { top, left } = el.getBoundingClientRect();
-
     const x = e.pageX - left - window.scrollX;
     const y = e.pageY - top - window.scrollY;
-
     setXY([x, y]);
   };
 
   return (
-    <div className="relative inline-block">
+    <div className="relative inline-block w-[80%]">
       <Image
         src={src}
         className={className}
