@@ -19,7 +19,7 @@ Here are Technogies used for building this project.
 ![NPM Version](https://img.shields.io/npm/v/tailwindcss?style=for-the-badge&logoColor=blue&logoSize=100&label=Tailwing.css&labelColor=0a83c9&color=black)
 
 ## 🌐 Demo
-Here is a working live demo:  https://cohort3-coding-crew-job-it.vercel.app/
+Here is a working live demo: so head 👉   [easymart](https://easymart-web.vercel.app/)
 
 ## 💼 Assets
 He is the figma design link so head 👉 [figma design](https://www.figma.com/design/hzocgdyX3PYPmK8nbRGQlj/Full-E-Commerce-Website-UI-UX-Design-(Community)-(Copy)?node-id=1-3&node-type=canvas&t=GgjSsDSBPFc8XYBO-0)
