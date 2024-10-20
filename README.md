@@ -2,7 +2,7 @@
 # EasyMart
 ## 📝 Description
 Welcome to EasyMart, A comprehensive eCommerce website built with Next.js, React, and TypeScript. EasyMart is user-friendly, compatible with all devices, and adaptable across different screen sizes.
-![easymart image](https://ibb.co/xgMzfx1)
+![easymart image][Uploading bg.png…]()
 
 
 ## 🚀 Technogies
