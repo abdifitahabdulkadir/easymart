@@ -21,6 +21,9 @@ Here are Technogies used for building this project.
 ## 🌐 Demo
 Here is a working live demo:  https://cohort3-coding-crew-job-it.vercel.app/
 
+## 🌐 Assets
+He is the figma design link so head 👉 [figma design](https://www.figma.com/design/hzocgdyX3PYPmK8nbRGQlj/Full-E-Commerce-Website-UI-UX-Design-(Community)-(Copy)?node-id=1-3&node-type=canvas&t=GgjSsDSBPFc8XYBO-0)
+
 ## 🛠️ Setup Project
 ### 🍴 Prerequisites
 
