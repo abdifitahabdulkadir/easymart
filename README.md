@@ -54,9 +54,6 @@ Start the server
 ```
 
 
-## 📋 License
-
-The last section of a high-quality README file is the license. This lets other developers know what they can and cannot do with your project. If you need help choosing a license, refer to https://choosealicense.com/.
 ## 🤔 FAQ
 
 #### Is this proejct open source?
@@ -72,3 +69,7 @@ It is still in development, lacking a lot of features which will be soon in cami
 
 No, you cannot use this project entirely for your own purposes. However, feel free to contribute, and if you use it, please provide proper credit and respect the copyright.
 
+
+## 📋 License
+
+The last section of a high-quality README file is the license. This lets other developers know what they can and cannot do with your project. If you need help choosing a license, refer to https://choosealicense.com/.
