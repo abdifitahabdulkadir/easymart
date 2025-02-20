@@ -14,7 +14,6 @@ export async function signUpWithCrendentials(
   const { email, password, name } = params!;
   try {
     const existedUer = await UserModel.findOne({ email });
-    console.log(existedUer);
     if (existedUer) throw new Error("User is already existed");
 
     const [newUser] = await UserModel.create([

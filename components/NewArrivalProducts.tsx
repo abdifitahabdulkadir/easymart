@@ -7,14 +7,14 @@ import { PrimaryTitleGenerator, SecondaryTitleGenerator } from "./Titles";
 
 export default function NewArrivalProducts() {
   return (
-    <div className="flex flex-col pb-20 h-full items-center justify-center min-w-full py-10 ">
-      <div className="w-full flex flex-col justify-start gap-y-3 mb-5">
+    <div className="flex h-full min-w-full flex-col items-center justify-center py-10 pb-20">
+      <div className="mb-5 flex w-full flex-col justify-start gap-y-3">
         <PrimaryTitleGenerator title="Featured" />
         <SecondaryTitleGenerator title="New Arrival" />
       </div>
 
-      <div className="grid  py-30  lg:grid-cols-2 w-full gap-x-4 gap-y-3 h-lg:[26rem] h-full overflow-hidden ">
-        <div className="w-full h-full bg-black  items-center flex justify-center rounded-[4px] relative">
+      <div className="py-30 h-lg:[26rem] grid h-full w-full gap-x-4 gap-y-3 overflow-hidden lg:grid-cols-2">
+        <div className="relative flex h-full w-full items-center justify-center rounded-[4px] bg-black">
           <Image
             src={"/featuredImages/playstation.svg"}
             width={100}
@@ -22,51 +22,51 @@ export default function NewArrivalProducts() {
             loading="eager"
             alt="Playstation image"
             priority
-            className=" w-full h-[70%] -mt-7 scale-[1.3] -mr-5 opacity-50"
+            className="-mr-5 -mt-7 h-[70%] w-full scale-[1.3] opacity-50"
           />
-          <div className="flex flex-col gap-y-2 text-white absolute left-[10%] w-[60%] bottom-[7%]">
+          <div className="absolute bottom-[7%] left-[10%] flex w-[60%] flex-col gap-y-2 text-white">
             <h4
-              className={`${interFont.className} font-semibold text-sx lg:text-[1.23rem]`}
+              className={`${interFont.className} text-sx font-semibold lg:text-[1.23rem]`}
             >
               PlayStation 5
             </h4>
             <p
-              className={`${popois.className} line-clamp-3 text-secondaryWhiteColorThree font-light text-[1rem]`}
+              className={`${popois.className} line-clamp-3 text-[1rem] font-light text-secondaryWhiteColorThree`}
             >
               Black and White version of the PS5 coming out on sale.
             </p>
             <Link
               href={""}
-              className="text-white text-xs border-b-[1.2px] pb-1 border-white  md:font-semibold hover:text-teritiaryLightOrangeColor w-fit"
+              className="w-fit border-b-[1.2px] border-white pb-1 text-xs text-white hover:text-teritiaryLightOrangeColor md:font-semibold"
             >
               ShopNow
             </Link>
           </div>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-y-2 gap-x-2  ">
-          <div className="w-full pb-6 col-span-full bg-black text-white grid grid-cols-[1fr_1fr] gap-x-3  rounded-[4px] ">
-            <div className="flex flex-col px-5 gap-y-2 text-white  justify-center relative -bottom-2 py-10 lg:py-0">
+        <div className="grid grid-cols-1 gap-x-2 gap-y-2 md:grid-cols-2 lg:grid-cols-2">
+          <div className="col-span-full grid w-full grid-cols-[1fr_1fr] gap-x-3 rounded-[4px] bg-black pb-6 text-white">
+            <div className="relative -bottom-2 flex flex-col justify-center gap-y-2 px-5 py-10 text-white lg:py-0">
               <h4
-                className={`${interFont.className} font-semibold text-sx lg:text-[1.23rem]`}
+                className={`${interFont.className} text-sx font-semibold lg:text-[1.23rem]`}
               >
                 Women’s Collections
               </h4>
               <p
-                className={`${popois.className} line-clamp-2 text-secondaryWhiteColorThree font-light text-[0.8rem]`}
+                className={`${popois.className} line-clamp-2 text-[0.8rem] font-light text-secondaryWhiteColorThree`}
               >
                 Featured woman collections that give you another vibe.
               </p>
               <Link
                 href={""}
-                className="text-white text-xs border-b-[1.2px] pb-1 border-white  md:font-semibold hover:text-teritiaryLightOrangeColor w-fit"
+                className="w-fit border-b-[1.2px] border-white pb-1 text-xs text-white hover:text-teritiaryLightOrangeColor md:font-semibold"
               >
                 ShopNow
               </Link>
             </div>
 
             {/* image */}
-            <div className="h-full w-full relative overflow-hidden">
+            <div className="relative h-full w-full overflow-hidden">
               <Image
                 src={"/featuredImages/back-women.svg"}
                 height={100}
@@ -74,7 +74,7 @@ export default function NewArrivalProducts() {
                 alt="model image"
                 loading="eager"
                 priority
-                className="h-full w-full  absolute scale-[1.5] -bottom-6 -left-8 rounded-[4px]"
+                className="absolute -bottom-6 -left-8 h-full w-full scale-[1.5] rounded-[4px]"
               />
             </div>
           </div>

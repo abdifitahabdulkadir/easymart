@@ -7,27 +7,27 @@ import { TbTruckDelivery } from "react-icons/tb";
 
 const items = [
   {
-    id: 1,
+    id: "caed18f7-c595-4ce7-8447-1c6b4f48eb7f",
     name: "FREE AND FAST DELIVERY",
     des: "Free delivery for all orders over $140",
     icon: (
-      <TbTruckDelivery className="group-hover:translate-x-1 group-hover:text-teritiaryOrangeColor transition-all duration-300 " />
+      <TbTruckDelivery className="transition-all duration-300 group-hover:translate-x-1 group-hover:text-teritiaryOrangeColor" />
     ),
   },
   {
-    id: 2,
+    id: "825a9bd5-fb4a-49a1-a436-68286c229dc2",
     name: "24/7 CUSTOMER SERVICE",
     des: "Friendly 24/7 customer support",
     icon: (
-      <BiSupport className="group-hover:scale-[1.4] group-hover:text-teritiaryOrangeColor transition-all duration-300 " />
+      <BiSupport className="transition-all duration-300 group-hover:scale-[1.4] group-hover:text-teritiaryOrangeColor" />
     ),
   },
   {
-    id: 3,
+    id: "6da5722c-c0a5-4e5c-897d-b603d1d2f50e",
     name: "MONEY BACK GUARANTEE",
     des: "We return money within 30 days",
     icon: (
-      <SiAdguard className="group-hover:scale-[1.4]  group-hover:text-teritiaryOrangeColor transition-all duration-300 " />
+      <SiAdguard className="transition-all duration-300 group-hover:scale-[1.4] group-hover:text-teritiaryOrangeColor" />
     ),
   },
 ];
@@ -38,29 +38,29 @@ export default function SupportAndDeliveryInfo({
   showArrow?: boolean;
 }) {
   return (
-    <div className="flex flex-col items-center justify-center  md:items-end w-full">
-      <div className="w-full gap-y-6 gap-x-3 flex-wrap flex items-center md:justify-between justify-center mt-10 py-10">
-        {items.map(({ id, name, des, icon }) => {
+    <div className="flex w-full flex-col items-center justify-center md:items-end">
+      <div className="mt-10 flex w-full flex-wrap items-center justify-center gap-x-3 gap-y-6 py-10 md:justify-between">
+        {items.map(({ name, id, des, icon }) => {
           return (
             <div
               key={id}
               className={`flex flex-col items-center justify-center ${popois.className}`}
             >
-              <div className="w-[3rem] cursor-pointer group h-[3rem] flex items-center justify-center rounded-full bg-[#2F2E30] bg-opacity-30 ">
-                <div className=" h-[70%] w-[70%] flex items-center justify-center rounded-full bg-black text-white">
+              <div className="group flex h-[3rem] w-[3rem] cursor-pointer items-center justify-center rounded-full bg-[#2F2E30] bg-opacity-30">
+                <div className="flex h-[70%] w-[70%] items-center justify-center rounded-full bg-black text-white">
                   {icon}
                 </div>
               </div>
-              <h3 className={`font-semibold text-[.9rem]`}>{name}</h3>
-              <p className="font-normal text-[.6rem]">{des}</p>
+              <h3 className={`text-[.9rem] font-semibold`}>{name}</h3>
+              <p className="text-[.6rem] font-normal">{des}</p>
             </div>
           );
         })}
       </div>
       {showArrow && (
         <Link href={"#main"}>
-          <div className="p-2 bg-secondaryWhiteColorOne flex items-center justify-center rounded-full hover:bg-secondaryWhiteColorOne  group cursor-pointer">
-            <MdArrowUpward className="group-hover:text-teritiaryOrangeColor transition-all duration-400" />
+          <div className="group flex cursor-pointer items-center justify-center rounded-full bg-secondaryWhiteColorOne p-2 hover:bg-secondaryWhiteColorOne">
+            <MdArrowUpward className="duration-400 transition-all group-hover:text-teritiaryOrangeColor" />
           </div>
         </Link>
       )}

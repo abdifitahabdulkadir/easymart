@@ -9,7 +9,7 @@ import { redirect } from "next/navigation";
 
 export default async function Home() {
   const session = await auth();
-  if (!session) redirect("/signup");
+  if (!session) redirect("/auth");
 
   return (
     <main className="w-full overflow-x-hidden" id="main">

@@ -13,7 +13,7 @@ const categores = [
     id: 1,
     name: "Phones",
     icon: (
-      <FiSmartphone className="w-8 h-8 group-hover:-translate-y-2 group-hover:scale-[1.3] transition-all duration-300 group-hover:text-white group-hover:rotate-45" />
+      <FiSmartphone className="h-8 w-8 transition-all duration-300 group-hover:-translate-y-2 group-hover:rotate-45 group-hover:scale-[1.3] group-hover:text-white" />
     ),
     isSelected: false,
   },
@@ -21,7 +21,7 @@ const categores = [
     id: 2,
     name: "Computers",
     icon: (
-      <HiOutlineComputerDesktop className="w-8 h-8 group-hover:-translate-y-2 group-hover:scale-[1.3] transition-all duration-300 group-hover:text-white  group-hover:-rotate-45" />
+      <HiOutlineComputerDesktop className="h-8 w-8 transition-all duration-300 group-hover:-translate-y-2 group-hover:-rotate-45 group-hover:scale-[1.3] group-hover:text-white" />
     ),
     isSelected: false,
   },
@@ -29,7 +29,7 @@ const categores = [
     id: 3,
     name: "SmartWatch",
     icon: (
-      <BsSmartwatch className="w-8 h-8 group-hover:-translate-y-2 group-hover:scale-[1.3] transition-all duration-300 group-hover:text-white group-hover:rotate-45" />
+      <BsSmartwatch className="h-8 w-8 transition-all duration-300 group-hover:-translate-y-2 group-hover:rotate-45 group-hover:scale-[1.3] group-hover:text-white" />
     ),
     isSelected: false,
   },
@@ -37,7 +37,7 @@ const categores = [
     id: 4,
     name: "Cameras",
     icon: (
-      <CiCamera className="w-8 h-8 group-hover:-translate-y-2 group-hover:scale-[1.3] transition-all duration-300 group-hover:text-white group-hover:-rotate-45" />
+      <CiCamera className="h-8 w-8 transition-all duration-300 group-hover:-translate-y-2 group-hover:-rotate-45 group-hover:scale-[1.3] group-hover:text-white" />
     ),
     isSelected: true,
   },
@@ -45,15 +45,15 @@ const categores = [
     id: 5,
     name: "HeadPhones",
     icon: (
-      <PiHeadphones className="w-8 h-8 group-hover:-translate-y-2 group-hover:scale-[1.3] transition-all duration-300 group-hover:text-white group-hover:rotate-45" />
+      <PiHeadphones className="h-8 w-8 transition-all duration-300 group-hover:-translate-y-2 group-hover:rotate-45 group-hover:scale-[1.3] group-hover:text-white" />
     ),
     isSelected: false,
   },
   {
-    id: 5,
+    id: 6,
     name: "Gaming",
     icon: (
-      <LuGamepad className="w-8 h-8 group-hover:-translate-y-2 group-hover:scale-[1.3] transition-all duration-300 group-hover:text-white group-hover:-rotate-45" />
+      <LuGamepad className="h-8 w-8 transition-all duration-300 group-hover:-translate-y-2 group-hover:-rotate-45 group-hover:scale-[1.3] group-hover:text-white" />
     ),
     isSelected: false,
   },
@@ -61,24 +61,24 @@ const categores = [
 export default function Categories() {
   return (
     <div
-      className={`w-full py-20 flex flex-col   items-center border-b border-gray-300 ${interFont.className}`}
+      className={`flex w-full flex-col items-center border-b border-gray-300 py-20 ${interFont.className}`}
     >
       <div className="flex w-full flex-col gap-y-3">
         <PrimaryTitleGenerator title={"Categories"} />
-        <div className="w-full flex items-center justify-between">
+        <div className="flex w-full items-center justify-between">
           <SecondaryTitleGenerator title={"Browse By Category"} />
           <DoubleArrows />
         </div>
       </div>
 
       {/* cateories items*/}
-      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-y-3 gap-x-3 items-center flex-wrap   w-full mt-8 ">
+      <div className="mt-8 grid w-full grid-cols-2 flex-wrap items-center gap-x-3 gap-y-3 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6">
         {categores.map(({ name, icon, isSelected }, index) => {
           return (
             <div
-              key={index}
-              className={`border-2  cursor-pointer min-w-fit min-h-fit  h-40 items-center justify-center flex flex-col gap-y-2  rounded-[4px] border-black/20 hover:bg-teritiaryOrangeColor  transition-all  duration-300 group hover:border-none  ${
-                isSelected && " bg-teritiaryOrangeColor text-white border-none"
+              key={String(name + index)}
+              className={`group flex h-40 min-h-fit min-w-fit cursor-pointer flex-col items-center justify-center gap-y-2 rounded-[4px] border-2 border-black/20 transition-all duration-300 hover:border-none hover:bg-teritiaryOrangeColor ${
+                isSelected && "border-none bg-teritiaryOrangeColor text-white"
               }`}
             >
               {icon}

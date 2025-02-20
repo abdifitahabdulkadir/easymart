@@ -8,12 +8,12 @@ import { RiMoneyDollarCircleFill } from "react-icons/ri";
 
 export default function CartPage() {
   return (
-    <div className="w-full  flex flex-col mt-10 px-2 md:px-10 items-center justify-center  gap-y-6">
-      <p className="flex w-full items-center gap-x-2 flex-wrap gap-y-3">
-        <span className="text-black/30 ">home /</span> Cart
+    <div className="mt-10 flex w-full flex-col items-center justify-center gap-y-6 px-2 md:px-10">
+      <p className="flex w-full flex-wrap items-center gap-x-2 gap-y-3">
+        <span className="text-black/30">home /</span> Cart
       </p>
 
-      <div className="grid gap-x-2 grid-cols-4 h-10 shadow-md  rounded-[4px] bg-secondaryWhiteColorThree  gap-3  w-full">
+      <div className="grid h-10 w-full grid-cols-4 gap-3 gap-x-2 rounded-[4px] bg-secondaryWhiteColorThree shadow-md">
         <TabBuilder text="Product">
           <AiFillProduct title="Product" />
         </TabBuilder>
@@ -27,34 +27,34 @@ export default function CartPage() {
           <RiMoneyDollarCircleFill title="Subtotal" />
         </TabBuilder>
       </div>
-      <div className="w-full flex flex-col gap-y-4 mt-10">
+      <div className="mt-10 flex w-full flex-col gap-y-4">
         {bestSellingProducts.map((item, index) => {
           return <CartProductItem key={index} item={item} />;
         })}
       </div>
 
-      <div className="flex w-full items-center justify-between mt-10 gap-x-3">
-        <button className="border w-[10rem] px-3 lg:px-7 p-1 border-black/30 flex items-center justify-center hover:bg-secondaryLightGraryColor duration-300 transition-all text-sm line-clamp-1 lg:text-lg cursor-pointer rounded-[4px] lg:w-fit">
+      <div className="mt-10 flex w-full items-center justify-between gap-x-3">
+        <button className="line-clamp-1 flex w-[10rem] cursor-pointer items-center justify-center rounded-[4px] border border-black/30 p-1 px-3 text-sm transition-all duration-300 hover:bg-secondaryLightGraryColor lg:w-fit lg:px-7 lg:text-lg">
           Return To Shop
         </button>
-        <button className="border w-[10rem]  px-3 lg:px-7 p-1 border-black/30 flex items-center justify-center hover:bg-secondaryLightGraryColor duration-300 transition-all text-sm line-clamp-1 lg:text-lg cursor-pointer rounded-[4px] lg:w-fit">
+        <button className="line-clamp-1 flex w-[10rem] cursor-pointer items-center justify-center rounded-[4px] border border-black/30 p-1 px-3 text-sm transition-all duration-300 hover:bg-secondaryLightGraryColor lg:w-fit lg:px-7 lg:text-lg">
           Update The Cart
         </button>
       </div>
 
-      <div className="w-full flex justify-between gap-y-3 flex-col md:flex-row items-start mt-10 ">
-        <div className="flex w-full flex-col lg:flex-row gap-y-2 items-center gap-x-6">
+      <div className="mt-10 flex w-full flex-col items-start justify-between gap-y-3 md:flex-row">
+        <div className="flex w-full flex-col items-center gap-x-6 gap-y-2 lg:flex-row">
           <input
             type="text"
             placeholder="Coupon Code"
-            className="px-4 py-3 outline-none focus:border-teritiaryGreenColor    rounded-[4px] border-2 border-black"
+            className="rounded-[4px] border-2 border-black px-4 py-3 outline-none focus:border-teritiaryGreenColor"
           />
-          <button className="px-4 py-3 bg-teritiaryOrangeColor text-white flex items-center justify-center rounded-[4px] hover:bg-teritiaryGreenColor  transition-all duration-300">
+          <button className="flex items-center justify-center rounded-[4px] bg-teritiaryOrangeColor px-4 py-3 text-white transition-all duration-300 hover:bg-teritiaryGreenColor">
             Apply Coupon Code
           </button>
         </div>
-        <div className="w-full md:w-[24rem] h-fit flex   flex-col gap-y-4 rounded-[4px] border border-black text-black py-6 px-4 ">
-          <h4 className={`${popois.className} font-medium text-[1.2rem] `}>
+        <div className="flex h-fit w-full flex-col gap-y-4 rounded-[4px] border border-black px-4 py-6 text-black md:w-[24rem]">
+          <h4 className={`${popois.className} text-[1.2rem] font-medium`}>
             Cart Total
           </h4>
           <CartSubTotalItemBuilder text="Subtotal:" value="$1750" />
@@ -66,7 +66,7 @@ export default function CartPage() {
           />
           <Link
             href={"/checkout"}
-            className="px-2 py-3 bg-teritiaryOrangeColor text-white flex items-center justify-center rounded-[4px] hover:bg-teritiaryGreenColor text-[.6rem]  transition-all duration-300"
+            className="flex items-center justify-center rounded-[4px] bg-teritiaryOrangeColor px-2 py-3 text-[.6rem] text-white transition-all duration-300 hover:bg-teritiaryGreenColor"
           >
             Proceed To Checkout
           </Link>
@@ -84,10 +84,10 @@ function TabBuilder({
   children: React.ReactNode;
 }) {
   return (
-    <div className="w-full h-full flex items-center justify-center gap-x-2">
+    <div className="flex h-full w-full items-center justify-center gap-x-2">
       {children}
       <h3
-        className={`${popois.className} font-normal tex-xs line-clamp-1 md:text-[1rem] hidden sm:block`}
+        className={`${popois.className} tex-xs line-clamp-1 hidden font-normal sm:block md:text-[1rem]`}
       >
         {text}
       </h3>
@@ -106,14 +106,14 @@ function CartSubTotalItemBuilder({
 }) {
   return (
     <div
-      className={`w-full flex items-center justify-between py-2 px-1  ${
+      className={`flex w-full items-center justify-between px-1 py-2 ${
         includeBorder && "border-b-2 border-black/30"
       }`}
     >
-      <span className={`${popois.className} font-normal text-[.8rem]`}>
+      <span className={`${popois.className} text-[.8rem] font-normal`}>
         {text}
       </span>
-      <span className={`${popois.className} font-semibold text-[.8rem]`}>
+      <span className={`${popois.className} text-[.8rem] font-semibold`}>
         {value}
       </span>
     </div>

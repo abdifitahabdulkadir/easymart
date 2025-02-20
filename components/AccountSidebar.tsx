@@ -13,18 +13,18 @@ export default function AccountSidebar() {
   return (
     <div
       className={`${
-        showSidebar ? "w-[2rem] " : "w-fit"
-      } flex flex-col gap-y-3  border-r border-black/10 lg:border-none `}
+        showSidebar ? "w-[2rem]" : "w-fit"
+      } flex flex-col gap-y-3 border-r border-black/10 lg:border-none`}
     >
       <BsLayoutSidebarInset
-        className=" self-end flex md:hidden text-black text-3xl  relative cursor-pointer scale-[.88]  z-10"
+        className="relative z-10 flex scale-[.88] cursor-pointer self-end text-3xl text-black md:hidden"
         onClick={toggle}
       />
 
       <div
         className={` ${
-          showSidebar ? " hidden " : " flex "
-        } relative md:flex w-full  flex-col items-start gap-y-6`}
+          showSidebar ? "hidden" : "flex"
+        } relative w-full flex-col items-start gap-y-6 md:flex`}
       >
         <SectionBuilder title="Manage My Account">
           <LinkBuilder href="My Profile" isActive={pathName === "/account"} />
@@ -53,8 +53,8 @@ function LinkBuilder({
       href={"/account"}
       className={`${
         popois.className
-      } ms-6 font-normal text-black/40 hover:text-teritiaryLightOrangeColor transition-all duration-200 hover:translate-x-2 text-[.7rem] md:text-[1rem] ${
-        isActive && " text-teritiaryLightOrangeColor "
+      } ms-6 text-[.7rem] font-normal text-black/40 transition-all duration-200 hover:translate-x-2 hover:text-teritiaryLightOrangeColor md:text-[1rem] ${
+        isActive && "text-teritiaryLightOrangeColor"
       }`}
     >
       {href}
@@ -70,9 +70,9 @@ function SectionBuilder({
   children?: React.ReactNode;
 }) {
   return (
-    <div className="w-full flex flex-col items-start gap-y-2">
+    <div className="flex w-full flex-col items-start gap-y-2">
       <h2
-        className={`${popois.className} font-semibold text-[.67rem]  md:text-[1.rem]`}
+        className={`${popois.className} text-[.67rem] font-semibold md:text-[1.rem]`}
       >
         {title}
       </h2>

@@ -2,7 +2,7 @@ import { ProductType } from "@/types/types";
 
 export const flashItems: ProductType[] = [
   {
-    id: 1,
+    id: "29bd351f-d3af-4963-98b7-c112c4a59121",
     name: "HAVIT HV-G92 Gamepad",
     currentPrice: 120,
     discount: 40,
@@ -12,7 +12,7 @@ export const flashItems: ProductType[] = [
     imageUrl: "/flashImages/gamepad.svg",
   },
   {
-    id: 2,
+    id: "93c2f21f-1302-4dc9-8c2c-1ec8a68934e7",
     name: "AK-900 Wired Keyboard",
     currentPrice: 960,
     discount: 35,
@@ -22,7 +22,7 @@ export const flashItems: ProductType[] = [
     imageUrl: "/flashImages/keyboard.svg",
   },
   {
-    id: 3,
+    id: "f5f49390-0c75-474e-81e5-d8b87fd13080",
     name: "IPS LCD Gaming Monitor",
     currentPrice: 370,
     discount: 30,
@@ -32,7 +32,7 @@ export const flashItems: ProductType[] = [
     originalPrice: 400,
   },
   {
-    id: 4,
+    id: "1f832a85-cff2-4828-9c9a-38c7002ad599",
     name: "S-Series Comfort Chair ",
     currentPrice: 375,
     discount: 25,
@@ -45,7 +45,7 @@ export const flashItems: ProductType[] = [
 
 export const bestSellingProducts: ProductType[] = [
   {
-    id: 1,
+    id: "9c49d06f-4281-4a9e-bb8f-c22f001df7c7",
     name: "The north coat",
     currentPrice: 260,
     rating: 5,
@@ -54,7 +54,7 @@ export const bestSellingProducts: ProductType[] = [
     imageUrl: "/bestSellingImages/tshirt.svg",
   },
   {
-    id: 2,
+    id: "0da1db61-a416-41a0-94d7-ed0f93ad4aa5",
     name: "Gucci duffle bag",
     originalPrice: 1160,
     currentPrice: 960,
@@ -63,7 +63,7 @@ export const bestSellingProducts: ProductType[] = [
     imageUrl: "/bestSellingImages/bag.svg",
   },
   {
-    id: 3,
+    id: "a051a08f-d8ae-41bb-b0de-603dbc40f5f3",
     name: "RGB liquid CPU Cooler",
     originalPrice: 170,
     currentPrice: 160,
@@ -72,7 +72,7 @@ export const bestSellingProducts: ProductType[] = [
     imageUrl: "/bestSellingImages/cd.svg",
   },
   {
-    id: 4,
+    id: "1f8a598c-7b67-43b8-a78a-f3dd5e4d41e6",
     name: "Small BookSelf",
     currentPrice: 360,
     originalPrice: 0,
@@ -84,7 +84,7 @@ export const bestSellingProducts: ProductType[] = [
 
 export const exploreProducts: ProductType[] = [
   {
-    id: 1,
+    id: "46b0ad41-58ff-4688-a106-bc14b742341a",
     name: "Breed Dry Dog Food",
     currentPrice: 100,
     originalPrice: 0,
@@ -93,7 +93,7 @@ export const exploreProducts: ProductType[] = [
     imageUrl: "/productImages/dogfood.svg",
   },
   {
-    id: 2,
+    id: "b59676c4-7846-445b-adfd-21edd74087b1",
     name: "CANON EOS DSLR Camera",
     currentPrice: 360,
     rating: 5,
@@ -102,7 +102,7 @@ export const exploreProducts: ProductType[] = [
     imageUrl: "/productImages/camera.svg",
   },
   {
-    id: 3,
+    id: "00b11a54-df1b-4151-ae83-a62f0f6dff5a",
     name: "ASUS FHD Gaming Laptop",
     currentPrice: 700,
     originalPrice: 0,
@@ -111,7 +111,7 @@ export const exploreProducts: ProductType[] = [
     imageUrl: "/productImages/laptop.svg",
   },
   {
-    id: 4,
+    id: "aa836256-04cc-4acb-b441-a3c06e33ace4",
     name: "Curology Product Set",
     currentPrice: 500,
     originalPrice: 0,
@@ -120,7 +120,7 @@ export const exploreProducts: ProductType[] = [
     imageUrl: "/productImages/facewash.svg",
   },
   {
-    id: 5,
+    id: "c52e1c8e-a3ca-41b9-9c4e-9a8e7d2a5e2f",
     name: "Kids Electric Car",
     currentPrice: 160,
     rating: 5,
@@ -131,7 +131,7 @@ export const exploreProducts: ProductType[] = [
     isNew: true,
   },
   {
-    id: 6,
+    id: "2327cf63-9808-448a-b153-489ebd657ad7",
     name: "Jr. Zoom Soccer Cleats",
     currentPrice: 1160,
     originalPrice: 0,
@@ -141,7 +141,7 @@ export const exploreProducts: ProductType[] = [
     colors: ["#EEFF61", "#DB4444"],
   },
   {
-    id: 7,
+    id: "2a898844-0548-4b07-a5dc-15bd88a2d405",
     name: "GP11 Shooter USB Gamepad",
     currentPrice: 660,
     originalPrice: 0,
@@ -152,7 +152,7 @@ export const exploreProducts: ProductType[] = [
     isNew: true,
   },
   {
-    id: 8,
+    id: "e8c09bbc-b6fb-4c03-a1e6-4e5deaa6beaf",
     name: "Quilted Satin Jacket",
     currentPrice: 660,
     rating: 4,
@@ -165,7 +165,7 @@ export const exploreProducts: ProductType[] = [
 
 export const wishlistProducts: ProductType[] = [
   {
-    id: 1,
+    id: "fb9e68b4-1413-4ef3-b3c9-2c2aa8ed214f",
     name: "Gucci duffle bag",
     originalPrice: 1160,
     currentPrice: 960,
@@ -175,7 +175,7 @@ export const wishlistProducts: ProductType[] = [
     imageUrl: "/bestSellingImages/bag.svg",
   },
   {
-    id: 2,
+    id: "b1b025ca-6e5f-4357-914f-83c8b0c77d06",
     name: "RGB liquid CPU Cooler",
     originalPrice: 0,
     currentPrice: 160,
@@ -187,7 +187,7 @@ export const wishlistProducts: ProductType[] = [
   },
 
   {
-    id: 3,
+    id: "6b2462d3-9b51-4dd2-90c1-ec7ab113f72f",
     name: "GP11 Shooter USB Gamepad",
     currentPrice: 550,
     originalPrice: 0,
@@ -197,7 +197,7 @@ export const wishlistProducts: ProductType[] = [
     imageUrl: "/productImages/gamepad.svg",
   },
   {
-    id: 4,
+    id: "1b667f53-47dc-439a-8226-a90d41b13912",
     name: "Quilted Satin Jacket",
     currentPrice: 750,
     rating: 4,

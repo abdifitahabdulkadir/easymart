@@ -6,48 +6,48 @@ import HeroSidebar from "./HeroSidebar";
 
 export default function Hero() {
   return (
-    <div className="grid grid-cols-1  min-h-fit lg:grid-cols-[20%_1fr]  w-full h-full">
+    <div className="grid h-full min-h-fit w-full grid-cols-1 lg:grid-cols-[20%_1fr]">
       <HeroSidebar />
-      <div className="w-full px-2  h-full pt-5 overflow-hidden ">
-        <div className="w-full grid-cols-1 pt-5 grid md:grid-cols-[1fr_1fr] px-5 lg:px-10 justify-center place-items-center h-full bg-black ">
+      <div className="h-full w-full overflow-hidden px-2 pt-5">
+        <div className="grid h-full w-full grid-cols-1 place-items-center justify-center bg-black px-5 pt-5 md:grid-cols-[1fr_1fr] lg:px-10">
           {/* text information */}
-          <div className="text-white  flex items-start flex-col h-full justify-around ">
-            <div className="flex gap-x-2 items-center justify-around mt-4 lg:mt-0">
-              <FaAppleAlt className="w-[20px] h-[20px] md:w-[40px] md:h-[40px]" />
-              <span className="font-light ">iPhone 14 Series</span>
+          <div className="flex h-full flex-col items-start justify-around text-white">
+            <div className="mt-4 flex items-center justify-around gap-x-2 lg:mt-0">
+              <FaAppleAlt className="h-[20px] w-[20px] md:h-[40px] md:w-[40px]" />
+              <span className="font-light">iPhone 14 Series</span>
             </div>
-            <h1 className="font-normal text-[14px]  line-clamp-1 md:text-[2rem] md:line-clamp-2 lg:text-2.5rem]  md:tracking-widest mt-4 lg:mt-0">
+            <h1 className="lg:text-2.5rem] mt-4 line-clamp-1 text-[14px] font-normal md:line-clamp-2 md:text-[2rem] md:tracking-widest lg:mt-0">
               Up to 10% off Voucher
             </h1>
-            <div className="flex items-center gap-x-2 transition-all duration-200  hover:translate-x-3 group mt-4 lg:mt-0">
+            <div className="group mt-4 flex items-center gap-x-2 transition-all duration-200 hover:translate-x-3 lg:mt-0">
               <Link
                 href={""}
-                className="text-white text-xs border-b-[1.2px] pb-1 border-white  md:font-semibold hover:text-teritiaryLightOrangeColor "
+                className="border-b-[1.2px] border-white pb-1 text-xs text-white hover:text-teritiaryLightOrangeColor md:font-semibold"
               >
                 ShopNow
               </Link>
-              <HiArrowSmallRight className="scale-[1.4] group-hover:text-teritiaryLightOrangeColor transition-colors duration-200" />
+              <HiArrowSmallRight className="scale-[1.4] transition-colors duration-200 group-hover:text-teritiaryLightOrangeColor" />
             </div>
           </div>
           {/* image */}
-          <div className="h-full flex mt-4 lg:mt-0  items-center justify-center w-full lg:pt-6">
+          <div className="mt-4 flex h-full w-full items-center justify-center lg:mt-0 lg:pt-6">
             <Image
               src={"/heroImages/iphone.svg"}
               width={100}
               priority
               height={100}
               alt="hero image"
-              className="w-full h-full"
+              className="h-full w-full"
             />
           </div>
 
           {/* slider dots */}
-          <div className="flex h-full  mb-5 items-end gap-x-3 w-full  col-span-full justify-center">
-            {Array.from({ length: 5 }, (index: number) => {
+          <div className="col-span-full mb-5 flex h-full w-full items-end justify-center gap-x-3">
+            {Array.from({ length: 5 }, (_, index: number) => {
               return (
                 <div
                   key={index}
-                  className="w-[12px] h-[12px] rounded-full bg-primaryWhiteColor  hover:bg-teritiaryOrangeColor hover:border hover:border-white transition-all duration-300 hover:scale-[1.4] cursor-pointer"
+                  className="h-[12px] w-[12px] cursor-pointer rounded-full bg-primaryWhiteColor transition-all duration-300 hover:scale-[1.4] hover:border hover:border-white hover:bg-teritiaryOrangeColor"
                 ></div>
               );
             })}

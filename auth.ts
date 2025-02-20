@@ -27,7 +27,6 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
             method: "POST",
             body: JSON.stringify(email),
           }).then((res) => res.json());
-          console.log("data", data, success);
           if (!success) return null;
 
           const enteredPassword = password;
@@ -38,18 +37,14 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
               email: data.email,
             };
         }
-
-        console.log("here is executed");
         return null;
       },
     }),
   ],
   callbacks: {
     async jwt({ token, account, user }) {
-      if (account) {
-        token.sub = user.id;
-      }
-      console.log("token", token);
+      if (account) token.sub = user.id;
+
       return token;
     },
 
