@@ -1,47 +1,94 @@
 import { popois } from "@/lib/font";
-import { FcGoogle } from "react-icons/fc";
+import { signUpWithCrendentials } from "@/lib/handleCrendentials";
+import { SignUpSchema } from "@/lib/validations";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useRouter } from "next/navigation";
+import { useTransition } from "react";
+import { useForm } from "react-hook-form";
+import { toast } from "react-toastify";
+import { z } from "zod";
+import FormInputWrapper from "./FormInputWrapper";
 interface ProsType {
   handleClick: VoidFunction;
 }
+
 export default function RegisterForm({ handleClick }: ProsType) {
+  const {
+    handleSubmit,
+    register,
+    formState: { errors },
+  } = useForm<z.infer<typeof SignUpSchema>>({
+    resolver: zodResolver(SignUpSchema),
+    defaultValues: {
+      name: "",
+      email: "",
+      password: "",
+    },
+  });
+  const [isSubmitting, startTranstion] = useTransition();
+  const router = useRouter();
+  function handleFormSubmit(data: z.infer<typeof SignUpSchema>) {
+    startTranstion(async () => {
+      const result = await signUpWithCrendentials(data);
+      if (result.success) {
+        toast("Account created successfully", { type: "success" });
+        router.push("/");
+        return;
+      }
+      toast(result.message, { type: "error" });
+    });
+  }
   return (
     <div
-      className={`lg:w-[70%] w-full py-10 flex flex-col gap-y-5 px-10 md:px-5 lg:px-1  ${popois.className}`}
+      className={`flex w-full flex-col gap-y-5 px-10 py-10 md:px-5 lg:w-[70%] lg:px-1 ${popois.className}`}
     >
-      <h1 className={` font-semibold text-[2rem] text-black `}>
+      <h1 className={`text-[2rem] font-semibold text-black`}>
         Create an account
       </h1>
-      <p className="font-normal text-[0.8rem]">Enter your details below</p>
+      <p className="text-[0.8rem] font-normal">Enter your details below</p>
 
-      <form action="" className="w-full flex flex-col gap-y-4">
-        <input
-          type="text"
-          placeholder="Name"
-          className="border-b-2 border-black/30 py-2 px-3ring-black/30 text-black placeholder:text-black/30  placeholder:text-sm  outline-none w-full"
-        />
-        <input
-          type="text"
-          placeholder="Email or Phone Number"
-          className="border-b-2 border-black/30 py-2 px-3ring-black/30 text-black placeholder:text-black/30 placeholder:text-sm  outline-none w-full"
-        />
-        <input
-          type="password"
-          placeholder="Password"
-          className="border-b-2 border-black/30 py-2 px-3ring-black/30 text-black placeholder:text-black/30 placeholder:text-sm  outline-none w-full"
-        />
-        <button className="w-full py-4 flex items-center justify-center text-white bg-teritiaryOrangeColor rounded-[4px] hover:bg-secondaryLightGraryColor hover:text-black transition-all duration-300 cursor-pointer hover:scale-[.99]">
-          Create Account
-        </button>
-        <button className="w-full py-3 flex items-center justify-center text-black  rounded-[4px] border border-black/30 gap-x-2 hover:bg-secondaryLightGraryColor cursor-pointer transition-all duration-200 hover:scale-[.99] ">
-          <FcGoogle className="scale-[1.4]" />
-          Sign up with Google
+      <form
+        onSubmit={handleSubmit(handleFormSubmit)}
+        className="flex w-full flex-col gap-y-4"
+      >
+        <FormInputWrapper message={errors.name?.message ?? ""}>
+          <input
+            type="text"
+            {...register("name")}
+            placeholder="Name"
+            className="px-3ring-black/30 w-full border-b-2 border-black/30 py-2 text-black outline-none placeholder:text-sm placeholder:text-black/30"
+          />
+        </FormInputWrapper>
+        <FormInputWrapper message={errors.email?.message ?? ""}>
+          <input
+            type="text"
+            {...register("email")}
+            placeholder="Email "
+            className="px-3ring-black/30 w-full border-b-2 border-black/30 py-2 text-black outline-none placeholder:text-sm placeholder:text-black/30"
+          />
+        </FormInputWrapper>
+
+        <FormInputWrapper message={errors.password?.message ?? ""}>
+          <input
+            type="password"
+            {...register("password")}
+            placeholder="Password"
+            className="px-3ring-black/30 w-full border-b-2 border-black/30 py-2 text-black outline-none placeholder:text-sm placeholder:text-black/30"
+          />
+        </FormInputWrapper>
+
+        <button
+          disabled={isSubmitting}
+          className="flex w-full cursor-pointer items-center justify-center rounded-[4px] bg-teritiaryOrangeColor py-4 text-white transition-all duration-300 hover:scale-[.99] hover:bg-secondaryLightGraryColor hover:text-black"
+        >
+          {isSubmitting ? "Creating Account..." : "Create Account"}
         </button>
       </form>
-      <p className="flex gap-2 items-center w-full  justify-center">
+      <p className="flex w-full items-center justify-center gap-2">
         Already have account?
         <button
           onClick={handleClick}
-          className="font-semibold hover:underline hover:text-sky-500 transition-all duration-150"
+          className="font-semibold transition-all duration-150 hover:text-sky-500 hover:underline"
         >
           Log in
         </button>

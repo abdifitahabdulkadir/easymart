@@ -3,7 +3,10 @@ import Footer from "@/components/Footer";
 import Navbar from "@/components/Navbar";
 import { popois } from "@/lib/font";
 import type { Metadata } from "next";
+import { SessionProvider } from "next-auth/react";
+import { ToastContainer } from "react-toastify";
 import "./globals.css";
+
 export const metadata: Metadata = {
   title: "EasyMart",
   description:
@@ -18,11 +21,14 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`antialiased ${popois.className} bg-white text-black`}>
-        <Navbar>
-          <Announcement />
-        </Navbar>
-        {children}
-        <Footer />
+        <SessionProvider>
+          <Navbar>
+            <Announcement />
+          </Navbar>
+          {children}
+          <Footer />
+          <ToastContainer />
+        </SessionProvider>
       </body>
     </html>
   );

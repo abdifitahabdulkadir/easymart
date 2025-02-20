@@ -3,10 +3,10 @@ import { SecondaryTitleGenerator } from "@/components/Titles";
 import { bestSellingProducts, exploreProducts, flashItems } from "@/lib";
 
 interface ProsType {
-  params: {
+  params: Promise<{
     categoryName: string;
-  };
-  searchParams: { name: string };
+  }>;
+  searchParams: Promise<{ name: string }>;
 }
 
 function decodeCategoryName(name: string) {
@@ -21,10 +21,19 @@ function decodeCategoryName(name: string) {
       return flashItems;
   }
 }
-export default function ProductsPage({
-  params: { categoryName },
-  searchParams: { name },
-}: ProsType) {
+export default async function ProductsPage(props: ProsType) {
+  const searchParams = await props.searchParams;
+
+  const {
+    name
+  } = searchParams;
+
+  const params = await props.params;
+
+  const {
+    categoryName
+  } = params;
+
   const items = decodeCategoryName(categoryName);
 
   return (

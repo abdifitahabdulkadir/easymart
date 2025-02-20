@@ -49,7 +49,6 @@ export default function ProductItem({
           </div>
         )}
 
-        {/* image */}
         <div className="h-[6rem] w-[60%] pb-3">
           <Image
             src={imageUrl}
@@ -62,7 +61,6 @@ export default function ProductItem({
           />
         </div>
 
-        {/* favorite icons */}
         {!addedToWishlist && (
           <div className="absolute right-2 top-2 flex h-fit flex-col items-center justify-around gap-y-2">
             <div className="group flex cursor-pointer items-center justify-center rounded-full bg-white p-2 text-gray-500 hover:bg-secondaryWhiteColorTwo">
@@ -97,7 +95,6 @@ export default function ProductItem({
         </div>
       </div>
 
-      {/* product descprions */}
       <div className="flex flex-col gap-y-1 py-3 pl-1">
         <div className="flex items-start gap-y-2">
           <h3 className="line-clamp-1 w-full text-base font-medium text-black">
@@ -115,7 +112,6 @@ export default function ProductItem({
             )}
           </div>
 
-          {/* rating */}
           {!addedToWishlist && (
             <div className={`flex items-center gap-x-2`}>
               <div className="flex items-center gap-x-1">
@@ -129,7 +125,6 @@ export default function ProductItem({
             </div>
           )}
         </div>
-        {/* colors */}
         {colors && (
           <div className="flex items-center gap-x-1">
             {colors?.map((color) => {
