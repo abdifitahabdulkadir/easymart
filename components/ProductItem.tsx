@@ -108,6 +108,7 @@ export default async function ProductItem({
         <div className="absolute bottom-1 flex w-full items-center gap-x-2 px-3">
           {!isAddedToCart && (
             <AddToCartButton
+              price={currentPrice || originalPrice}
               productId={id}
               categoryName={categoryName}
               showIcon={true}

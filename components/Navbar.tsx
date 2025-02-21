@@ -1,7 +1,8 @@
 "use client";
 
+import { getCartItems } from "@/lib/cart.action";
 import Link from "next/link";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { BsCart2 } from "react-icons/bs";
 import { FaSearch } from "react-icons/fa";
 import { GrFavorite } from "react-icons/gr";
@@ -12,34 +13,47 @@ import UserIcon from "./UserIcon";
 interface ProsType {
   children: React.ReactNode;
 }
+
 export default function Navbar({ children }: ProsType) {
   const [isOpen, setIsOpen] = useState(false);
-
+  const [cartItems, setCartItems] = useState(0);
+  useEffect(function () {
+    (async () => {
+      const { data } = await getCartItems();
+      setCartItems(data.length);
+    })();
+  }, []);
   return (
-    <section className="w-full border-b border-secondaryLightGraryColor/60 ">
+    <section className="w-full border-b border-secondaryLightGraryColor/60">
       {children}
-      <div className="w-full px-5 md:px-20 py-10 md:py-4 grid grid-cols-1  place-items-center md:grid-cols-[1fr_2fr_2fr_1fr] lg:grid-cols-[1fr_2fr_2fr] gap-x-6 gap-y-4 shadow-lg shadow-secondaryWhiteColorThree">
+      <div className="grid w-full grid-cols-1 place-items-center gap-x-6 gap-y-4 px-5 py-10 shadow-lg shadow-secondaryWhiteColorThree md:grid-cols-[1fr_2fr_2fr_1fr] md:px-20 md:py-4 lg:grid-cols-[1fr_2fr_2fr]">
         <div className="w-full">
-          <h1 className="font-bold text-xl text-black leading-8">EasyMart</h1>
+          <h1 className="text-xl font-bold leading-8 text-black">EasyMart</h1>
         </div>
-        <nav className="w-fit  hidden lg:block ">
-          <NavItems className="lg:flex flex-row text-xs" />
+        <nav className="hidden w-fit lg:block">
+          <NavItems className="flex-row text-xs lg:flex" />
         </nav>
-        <div className="flex items-center md:col-span-2 order-3  md:order-2 lg:order-3  justify-end  gap-x-5 w-full col-span-2 lg:col-span-1">
+        <div className="order-3 col-span-2 flex w-full items-center justify-end gap-x-5 md:order-2 md:col-span-2 lg:order-3 lg:col-span-1">
           <form action="" className="w-full">
-            <div className="relative h-[38px] group  w-full ">
+            <div className="group relative h-[38px] w-full">
               <input
                 type="text"
                 placeholder="What are you looking for?"
-                className="bg-secondaryWhiteColorOne focus:ring-0 focus:outline-0 h-full hover:border-[2px] hover:border-teritiaryLightOrangeColor duration-150 transition-colors w-full py-2 px-4 pr-10 rounded-[4px] text-black font-light text-xs line-clamp-1"
+                className="line-clamp-1 h-full w-full rounded-[4px] bg-secondaryWhiteColorOne px-4 py-2 pr-10 text-xs font-light text-black transition-colors duration-150 hover:border-[2px] hover:border-teritiaryLightOrangeColor focus:outline-0 focus:ring-0"
               />
-              <FaSearch className="absolute group-hover:text-teritiaryLightOrangeColor group-hover:scale-[1.3] transition-all duration-500 right-3 top-1/2 transform -translate-y-1/2 text-black/20" />
+              <FaSearch className="absolute right-3 top-1/2 -translate-y-1/2 transform text-black/20 transition-all duration-500 group-hover:scale-[1.3] group-hover:text-teritiaryLightOrangeColor" />
             </div>
           </form>
           <div className="flex items-center justify-center gap-x-4">
-            <GrFavorite className="w-4 h-4 md:scale-[1.1] mt-1 text-black/60 " />
-            <Link href={"/cart"}>
-              <BsCart2 className="w-4 h-4 md:scale-[1.1]  text-black/60" />
+            <GrFavorite className="mt-1 h-4 w-4 text-black/60 md:scale-[1.1]" />
+            <Link
+              href={"/cart"}
+              className="relative rounded-md bg-primaryGrayColorTwo/30 px-3 py-2"
+            >
+              <BsCart2 className="h-4 w-4 text-black/50 md:scale-[1.1]" />
+              {cartItems > 0 ? (
+                <div className="absolute -top-2 size-3 rounded-full bg-starColor font-bold text-teritiaryOrangeColor" />
+              ) : null}
             </Link>
 
             <UserIcon />
@@ -48,7 +62,7 @@ export default function Navbar({ children }: ProsType) {
 
         <button
           onClick={() => setIsOpen(!isOpen)}
-          className=" lg:hidden font-bold text-xl order-2 md:order-3"
+          className="order-2 text-xl font-bold md:order-3 lg:hidden"
         >
           <MdMenu />
         </button>

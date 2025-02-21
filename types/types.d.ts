@@ -5,6 +5,7 @@ export type ProductType = {
   name: string;
   originalPrice: number;
   rating: number;
+  quantity?: number;
   soldTimes: number;
   imageUrl: string;
   colors?: string[];
@@ -16,6 +17,7 @@ export type ProductType = {
 export type CartParams = {
   categoryName: string;
   productId: string;
+  price: number;
 };
 
-export type WishlistParams = CartParams;
+export type WishlistParams = Omit<CartParams, "price">;

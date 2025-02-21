@@ -9,11 +9,13 @@ interface AddToCartProps {
   productId: string;
   categoryName: string;
   showIcon?: boolean;
+  price: number;
 }
 export default function AddToCartButton({
   showIcon,
   productId,
   categoryName,
+  price,
 }: AddToCartProps) {
   const [isTransitioning, startTransition] = useTransition();
 
@@ -22,6 +24,7 @@ export default function AddToCartButton({
       const result = await addToCart({
         productId,
         categoryName,
+        price,
       });
       if (result.success) {
         toast("Item added to cart", { type: "success" });

@@ -5,6 +5,8 @@ interface CartI {
   categoryName: string;
   productId: string;
   ownerId: Schema.Types.ObjectId;
+  price: number;
+  quantity?: number;
 }
 
 const CartSchema = new Schema<CartI>({
@@ -15,6 +17,14 @@ const CartSchema = new Schema<CartI>({
   productId: {
     type: String,
     required: true,
+  },
+  price: {
+    type: Number,
+    required: true,
+  },
+  quantity: {
+    type: Number,
+    default: 1,
   },
   ownerId: {
     type: Schema.Types.ObjectId,
