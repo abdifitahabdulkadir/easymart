@@ -12,3 +12,10 @@ export type ProductType = {
   addedToCart?: boolean;
   addedToWishlist?: boolean;
 };
+
+export type CartParams = {
+  categoryName: string;
+  productId: string;
+};
+
+export type WishlistParams = CartParams;

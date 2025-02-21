@@ -1,3 +1,5 @@
+import { getCartItems } from "@/lib/cart.action";
+import { getWishlistsItems } from "@/lib/wishlist.action";
 import { ProductType } from "@/types/types";
 import Image from "next/image";
 import Link from "next/link";
@@ -6,20 +8,25 @@ import { MdDelete, MdFavoriteBorder, MdRemoveRedEye } from "react-icons/md";
 import AddToCartButton from "./AddToCartButton";
 import AddToWishList from "./AddToWishList";
 
-export default function ProductItem({
+function decoder(items: [], id: string) {
+  const check = items.filter(
+    (item: { productId: string; ownerId: string }) => item.productId === id,
+  )[0];
+  return check === undefined ? false : check["productId"] === id;
+}
+
+export default async function ProductItem({
   item: {
     name,
     imageUrl,
     soldTimes,
     discount,
-    isNew,
     id,
+    isNew,
     rating,
     currentPrice,
     originalPrice,
     colors,
-    addedToCart,
-    addedToWishlist,
   },
   categoryName,
   priceRatingClassName,
@@ -28,12 +35,21 @@ export default function ProductItem({
   categoryName: string;
   priceRatingClassName?: string;
 }) {
+  const [
+    { status: cartStatus, value: cartData },
+    { status: wishStatus, value: wishData },
+  ] = await Promise.allSettled([getCartItems(), getWishlistsItems()]);
+  const isAddedToCart =
+    cartStatus === "fulfilled" ? decoder(cartData.data, id) : false;
+  const isAddedToWishlist =
+    wishStatus === "fulfilled" ? decoder(wishData.data, id) : false;
+
   return (
     <Link
-      href={`/products/${categoryName}/${id}`}
+      href={`/products/${categoryName}`}
       className={`flex max-h-fit min-h-60 w-full cursor-pointer flex-col rounded-[4px] bg-white shadow-sm shadow-secondaryWhiteColorThree ${
-        !addedToWishlist &&
-        !addedToCart &&
+        !isAddedToWishlist &&
+        !isAddedToCart &&
         "transition-scale duration-300 hover:scale-[1.02]"
       }`}
     >
@@ -61,7 +77,7 @@ export default function ProductItem({
           />
         </div>
 
-        {!addedToWishlist && (
+        {!isAddedToWishlist && (
           <div className="absolute right-2 top-2 flex h-fit flex-col items-center justify-around gap-y-2">
             <div className="group flex cursor-pointer items-center justify-center rounded-full bg-white p-2 text-gray-500 hover:bg-secondaryWhiteColorTwo">
               <MdFavoriteBorder
@@ -78,7 +94,7 @@ export default function ProductItem({
           </div>
         )}
 
-        {addedToWishlist && (
+        {isAddedToWishlist && (
           <div className="absolute right-2 top-2 flex h-fit flex-col items-center justify-around gap-y-2">
             <div className="group flex cursor-pointer items-center justify-center rounded-full bg-white p-2 text-gray-500 hover:bg-secondaryWhiteColorTwo">
               <MdDelete
@@ -90,8 +106,16 @@ export default function ProductItem({
         )}
 
         <div className="absolute bottom-1 flex w-full items-center gap-x-2 px-3">
-          {!addedToCart && <AddToCartButton showIcon={true} />}
-          {!addedToWishlist && <AddToWishList />}
+          {!isAddedToCart && (
+            <AddToCartButton
+              productId={id}
+              categoryName={categoryName}
+              showIcon={true}
+            />
+          )}
+          {!isAddedToWishlist && (
+            <AddToWishList productId={id} categoryName={categoryName} />
+          )}
         </div>
       </div>
 
@@ -107,12 +131,12 @@ export default function ProductItem({
               <span className="text-teritiaryOrangeColor">{`\$${currentPrice}`}</span>
             )}
 
-            {originalPrice !== 0 && !addedToWishlist && (
+            {originalPrice !== 0 && !isAddedToWishlist && (
               <span className="text-primaryGrayColorTwo line-through">{`\$${originalPrice}`}</span>
             )}
           </div>
 
-          {!addedToWishlist && (
+          {!isAddedToWishlist && (
             <div className={`flex items-center gap-x-2`}>
               <div className="flex items-center gap-x-1">
                 {Array.from({ length: rating }, (_, index) => {

@@ -1,5 +1,6 @@
 "use client";
 
+import { useSession } from "next-auth/react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
@@ -18,7 +19,7 @@ const navItems = [
   },
   {
     name: "SignUp",
-    href: "/signup",
+    href: "/auth",
   },
 ];
 interface PropType {
@@ -26,18 +27,20 @@ interface PropType {
 }
 export default function NavItems({ className }: PropType) {
   const pathName = usePathname();
+  const session = useSession();
   return (
     <ul
-      className={`flex  items-center gap-x-10 gap-y-2  w-fit px-5 ${className}`}
+      className={`flex w-fit items-center gap-x-10 gap-y-2 px-5 ${className}`}
     >
       {navItems.map(({ href, name }, index) => {
+        if (session.data && name === "SignUp") return null;
         return (
           <li key={index} className="font-normal">
             <Link
               href={href}
-              className={`pt-2 pb-1 hover:border-b-4 hover:font-bold border-teritiaryOrangeColor transition-all duration-200  ${
+              className={`border-teritiaryOrangeColor pb-1 pt-2 transition-all duration-200 hover:border-b-4 hover:font-bold ${
                 href.toLowerCase() === pathName
-                  ? " font-bold border-b-4 border-teritiaryOrangeColor "
+                  ? "border-b-4 border-teritiaryOrangeColor font-bold"
                   : ""
               }`}
             >

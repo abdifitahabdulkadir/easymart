@@ -1,10 +1,45 @@
-import { FaShoppingCart } from "react-icons/fa";
+"use client";
 
-export default function AddToCartButton({ showIcon }: { showIcon?: boolean }) {
+import { addToCart } from "@/lib/cart.action";
+import { useTransition } from "react";
+import { FaShoppingCart } from "react-icons/fa";
+import { toast } from "react-toastify";
+
+interface AddToCartProps {
+  productId: string;
+  categoryName: string;
+  showIcon?: boolean;
+}
+export default function AddToCartButton({
+  showIcon,
+  productId,
+  categoryName,
+}: AddToCartProps) {
+  const [isTransitioning, startTransition] = useTransition();
+
+  function handleAddToCart() {
+    startTransition(async () => {
+      const result = await addToCart({
+        productId,
+        categoryName,
+      });
+      if (result.success) {
+        toast("Item added to cart", { type: "success" });
+        return;
+      }
+      toast(result.message, { type: "error" });
+    });
+  }
   return (
-    <button className="bg-black hover:bg-secondaryLightGraryColor hover:text-black transition-all font-semibold duration-300 cursor-pointer rounded-lg px-1 py-2 text-[0.5rem] text-white w-full flex items-center gap-x-3 justify-center">
-      {showIcon && <FaShoppingCart className="scale-[2.4]" />}
-      Add Cart
+    <button
+      onClick={handleAddToCart}
+      disabled={isTransitioning}
+      className="flex w-full cursor-pointer items-center justify-center gap-x-3 rounded-lg bg-black px-1 py-2 text-[0.5rem] font-semibold text-white transition-all duration-300 hover:bg-secondaryLightGraryColor hover:text-black"
+    >
+      {isTransitioning
+        ? "Processing..."
+        : showIcon && <FaShoppingCart className="scale-[2.4]" /> &&
+          "Add to Cart"}
     </button>
   );
 }

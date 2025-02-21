@@ -28,7 +28,7 @@ export default function ExploreProducts() {
       </div>
       {/* view all button */}
       <Link
-        href={"/products/exploreProducts?name=Explore Our Products"}
+        href={"/products/exploreProducts"}
         className="mt-10 bg-teritiaryOrangeColor p-2 text-white transition-all duration-500 hover:scale-x-[1.12] hover:bg-secondaryLightGraryColor hover:text-black hover:shadow-lg"
       >
         View All Products

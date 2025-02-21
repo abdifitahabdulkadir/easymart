@@ -38,7 +38,7 @@ export default function FlashSales() {
 
       {/* view all button */}
       <Link
-        href={"/products/flashItems?name=Flash Sales"}
+        href={"/products/flashItems"}
         className="mt-10 bg-teritiaryOrangeColor px-3 py-2 text-white transition-all duration-500 hover:scale-x-[1.12] hover:bg-secondaryLightGraryColor hover:text-black hover:shadow-lg"
       >
         View All Products

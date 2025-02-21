@@ -17,7 +17,7 @@ export default function BestSellingProducts() {
         <div className="flex w-full items-center justify-between gap-x-3">
           <SecondaryTitleGenerator title="Best Selling Products" />
           <Link
-            href={"/products/bestSellingProducts?name=Best Selling Products"}
+            href={"/products/bestSellingProducts"}
             className="-mt-4 w-fit bg-teritiaryOrangeColor p-2 text-white transition-all duration-500 hover:bg-secondaryLightGraryColor hover:text-black hover:shadow-lg"
           >
             View All
@@ -33,7 +33,6 @@ export default function BestSellingProducts() {
         })}
       </div>
 
-      {/* ads image */}
       <div className="mt-20 grid h-[25rem] w-fit grid-cols-[1fr_2fr] gap-x-10 bg-black px-7 py-4 text-white md:px-2 lg:px-10">
         <div className="flex w-full flex-col items-start justify-around px-3">
           <h6

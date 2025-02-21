@@ -21,26 +21,30 @@ function decodeCategoryName(name: string) {
       return flashItems;
   }
 }
-export default async function ProductsPage(props: ProsType) {
-  const searchParams = await props.searchParams;
 
-  const {
-    name
-  } = searchParams;
-
-  const params = await props.params;
-
-  const {
-    categoryName
-  } = params;
+function decodeCategoryTitile(name: string) {
+  switch (name) {
+    case "flashItems":
+      return "Flash Items";
+    case "bestSellingProducts":
+      return "Best Selling Products";
+    case "exploreProducts":
+      return "Explore Products";
+    default:
+      return "Flash Items";
+  }
+}
+export default async function ProductsPage({ params }: ProsType) {
+  const { categoryName } = await params;
 
   const items = decodeCategoryName(categoryName);
+  const title = decodeCategoryTitile(categoryName);
 
   return (
     <div className="flex h-full w-full flex-col items-center gap-y-4 px-20 py-10">
       <div className="mb-5 flex w-full gap-x-2 gap-y-4">
         <div className="h-[70px] w-[5px] rounded-md bg-teritiaryOrangeColor"></div>
-        <SecondaryTitleGenerator title={name} />
+        <SecondaryTitleGenerator title={title} />
       </div>
 
       <div className="grid w-full place-items-center gap-x-3 gap-y-3 px-10 py-5 md:grid-cols-3 md:px-3 lg:grid-cols-4">
