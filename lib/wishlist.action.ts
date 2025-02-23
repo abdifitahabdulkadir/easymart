@@ -3,6 +3,7 @@
 import { auth } from "@/auth";
 import WishListModel from "@/database/wishlist.model";
 import { WishlistParams } from "@/types/types";
+import { revalidatePath } from "next/cache";
 import dbConnect from "./dbconnection";
 
 export async function addToWishList({
@@ -24,7 +25,7 @@ export async function addToWishList({
     ]);
 
     if (!newWishList) throw new Error("Failed to add Wishlist try again");
-
+    revalidatePath("/");
     return {
       success: true,
       data: JSON.stringify(newWishList),
@@ -42,12 +43,9 @@ export async function removeFromWishlist({
 }: Pick<WishlistParams, "productId">) {
   await dbConnect();
   try {
-    const deleteWishlist = await WishListModel.findOneAndDelete(
-      { productId },
-      { new: true },
-    );
+    const deleteWishlist = await WishListModel.findOneAndDelete({ productId });
     if (!deleteWishlist) throw new Error("Failed to remove item from wishlist");
-
+    revalidatePath("/wishlist");
     return { success: true };
   } catch (error) {
     if (error instanceof Error)
@@ -62,7 +60,7 @@ export async function getWishlistsItems() {
   try {
     const wishlistItems = await WishListModel.find({
       ownerId: session?.user?.id,
-    }).select("productId ownerId");
+    });
 
     if (!wishlistItems) return { success: false, data: [] };
 

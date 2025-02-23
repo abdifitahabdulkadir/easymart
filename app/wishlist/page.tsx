@@ -1,20 +1,52 @@
 import ProductItem from "@/components/ProductItem";
 import { PrimaryTitleGenerator } from "@/components/Titles";
-import { exploreProducts, wishlistProducts } from "@/lib";
+import { exploreProducts } from "@/lib";
+import { decodeProductCategory } from "@/lib/util";
+import { getWishlistsItems } from "@/lib/wishlist.action";
 
-export default function page() {
+export default async function page() {
+  const { data } = await getWishlistsItems();
   return (
     <div className="flex w-full flex-col items-center justify-center gap-y-10 px-10 py-10">
       <div className="flex w-full items-center justify-between">
-        <h6 className="font-normal text-black/90">WishList (4) </h6>
+        <h6 className="font-normal text-black/90">
+          WishList
+          <span className="font-bold italic">
+            ({data !== undefined ? data.length : null})
+          </span>
+        </h6>
         <button className="flex cursor-pointer items-center justify-center rounded-[4px] border border-black/30 px-3 py-2 transition-all duration-200 hover:bg-secondaryLightGraryColor hover:text-black">
           Move All To Bag
         </button>
       </div>
-      <div className="grid w-full grid-cols-2 gap-x-3 lg:grid-cols-4">
-        {wishlistProducts.map((item, index) => {
-          return <ProductItem categoryName="" item={item} key={index} />;
-        })}
+      <div className="grid w-full place-items-center gap-x-3 gap-y-3 px-10 py-5 md:grid-cols-3 md:px-3 lg:grid-cols-4">
+        {data !== undefined &&
+          data?.map(
+            ({
+              categoryName,
+              productId,
+              quantity,
+            }: {
+              categoryName: string;
+              productId: string;
+              quantity: number;
+            }) => {
+              const productCategory = decodeProductCategory(categoryName);
+              return productCategory
+                .filter((item) => item.id === productId)
+                .map((current) => {
+                  current.quantity = quantity;
+                  return (
+                    <ProductItem
+                      showDeleteIcon
+                      categoryName={categoryName}
+                      item={current}
+                      key={current.id}
+                    />
+                  );
+                });
+            },
+          )}
       </div>
 
       {/* recommendations */}

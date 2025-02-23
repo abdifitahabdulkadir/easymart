@@ -15,8 +15,7 @@ export default function AddToWishList({
 }: AddToWishProps) {
   const [isTransitioning, startTransition] = useTransition();
 
-  function handleAddToWishList(e: React.MouseEvent<HTMLButtonElement>) {
-    e.stopPropagation();
+  function handleAddToWishList() {
     startTransition(async () => {
       const result = await addToWishList({
         productId,

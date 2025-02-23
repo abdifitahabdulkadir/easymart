@@ -4,9 +4,10 @@ import { ProductType } from "@/types/types";
 import Image from "next/image";
 import Link from "next/link";
 import { FaStar } from "react-icons/fa";
-import { MdDelete, MdFavoriteBorder, MdRemoveRedEye } from "react-icons/md";
+import { MdFavoriteBorder, MdRemoveRedEye } from "react-icons/md";
 import AddToCartButton from "./AddToCartButton";
 import AddToWishList from "./AddToWishList";
+import DeleteProduct from "./DeleteProduct";
 
 function decoder(items: [], id: string) {
   const check = items.filter(
@@ -30,23 +31,23 @@ export default async function ProductItem({
   },
   categoryName,
   priceRatingClassName,
+  showDeleteIcon = false,
 }: {
   item: ProductType;
   categoryName: string;
   priceRatingClassName?: string;
+  showDeleteIcon?: boolean;
 }) {
-  const [
-    { status: cartStatus, value: cartData },
-    { status: wishStatus, value: wishData },
-  ] = await Promise.allSettled([getCartItems(), getWishlistsItems()]);
+  const [cart, wishlist] = await Promise.allSettled([
+    getCartItems(),
+    getWishlistsItems(),
+  ]);
   const isAddedToCart =
-    cartStatus === "fulfilled" ? decoder(cartData.data, id) : false;
+    cart.status === "fulfilled" ? decoder(cart.value.data, id) : false;
   const isAddedToWishlist =
-    wishStatus === "fulfilled" ? decoder(wishData.data, id) : false;
-
+    wishlist.status === "fulfilled" ? decoder(wishlist.value.data, id) : false;
   return (
-    <Link
-      href={`/products/${categoryName}`}
+    <div
       className={`flex max-h-fit min-h-60 w-full cursor-pointer flex-col rounded-[4px] bg-white shadow-sm shadow-secondaryWhiteColorThree ${
         !isAddedToWishlist &&
         !isAddedToCart &&
@@ -65,7 +66,10 @@ export default async function ProductItem({
           </div>
         )}
 
-        <div className="h-[6rem] w-[60%] pb-3">
+        <Link
+          href={`/products/${categoryName}`}
+          className="h-[6rem] w-[60%] pb-3"
+        >
           <Image
             src={imageUrl}
             height={100}
@@ -75,9 +79,9 @@ export default async function ProductItem({
             width={100}
             className="h-full w-full"
           />
-        </div>
+        </Link>
 
-        {!isAddedToWishlist && (
+        {!showDeleteIcon && (
           <div className="absolute right-2 top-2 flex h-fit flex-col items-center justify-around gap-y-2">
             <div className="group flex cursor-pointer items-center justify-center rounded-full bg-white p-2 text-gray-500 hover:bg-secondaryWhiteColorTwo">
               <MdFavoriteBorder
@@ -94,13 +98,10 @@ export default async function ProductItem({
           </div>
         )}
 
-        {isAddedToWishlist && (
+        {showDeleteIcon && (
           <div className="absolute right-2 top-2 flex h-fit flex-col items-center justify-around gap-y-2">
             <div className="group flex cursor-pointer items-center justify-center rounded-full bg-white p-2 text-gray-500 hover:bg-secondaryWhiteColorTwo">
-              <MdDelete
-                name="add Favorites"
-                className="transition-all duration-500 group-hover:scale-[1.12]"
-              />
+              <DeleteProduct productId={id} />
             </div>
           </div>
         )}
@@ -166,6 +167,6 @@ export default async function ProductItem({
           </div>
         )}
       </div>
-    </Link>
+    </div>
   );
 }

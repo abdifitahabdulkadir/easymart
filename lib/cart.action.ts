@@ -3,7 +3,7 @@
 import { auth } from "@/auth";
 import CartModel from "@/database/cart.model";
 import { CartParams } from "@/types/types";
-import { NextResponse } from "next/server";
+import { revalidatePath } from "next/cache";
 import dbConnect from "./dbconnection";
 
 export async function addToCart({
@@ -27,6 +27,7 @@ export async function addToCart({
 
     if (!newCartItem) throw new Error("Failed to add Cart try again");
 
+    revalidatePath("/");
     return {
       success: true,
       data: JSON.parse(JSON.stringify(newCartItem)),
@@ -54,13 +55,12 @@ export async function removeFromCart({
   try {
     if (!session)
       throw new Error("You need to authenticate to perform such actions");
-    const deletedCartItem = await CartModel.findOneAndDelete(
-      { productId },
-      { new: true },
-    );
+    const deletedCartItem = await CartModel.findOneAndDelete({ productId });
+    console.log(deletedCartItem, productId);
     if (!deletedCartItem) throw new Error("Failed to remove item from cart");
 
-    return NextResponse.json({ success: true });
+    revalidatePath("/cart");
+    return { success: true };
   } catch (error) {
     if (error instanceof Error)
       return { success: false, message: error.message, status: 400 };

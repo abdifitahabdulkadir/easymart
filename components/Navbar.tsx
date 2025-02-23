@@ -17,18 +17,25 @@ interface ProsType {
 export default function Navbar({ children }: ProsType) {
   const [isOpen, setIsOpen] = useState(false);
   const [cartItems, setCartItems] = useState(0);
+
   useEffect(function () {
     (async () => {
       const { data } = await getCartItems();
       setCartItems(data.length);
     })();
   }, []);
+
   return (
     <section className="w-full border-b border-secondaryLightGraryColor/60">
       {children}
       <div className="grid w-full grid-cols-1 place-items-center gap-x-6 gap-y-4 px-5 py-10 shadow-lg shadow-secondaryWhiteColorThree md:grid-cols-[1fr_2fr_2fr_1fr] md:px-20 md:py-4 lg:grid-cols-[1fr_2fr_2fr]">
         <div className="w-full">
-          <h1 className="text-xl font-bold leading-8 text-black">EasyMart</h1>
+          <Link
+            href={"/"}
+            className="cursor-pointer text-xl font-bold leading-8 text-black"
+          >
+            EasyMart
+          </Link>
         </div>
         <nav className="hidden w-fit lg:block">
           <NavItems className="flex-row text-xs lg:flex" />
