@@ -14,9 +14,14 @@ export async function addToCart({
   const session = await auth();
   await dbConnect();
   try {
+    let newCartItem;
     if (!session)
       throw new Error("You need to authenticate to perform such actions");
-    const [newCartItem] = await CartModel.create([
+
+    newCartItem = await CartModel.findOne({ productId });
+    if (newCartItem) return;
+
+    [newCartItem] = await CartModel.create([
       {
         categoryName: categoryName,
         productId: productId,
@@ -56,7 +61,6 @@ export async function removeFromCart({
     if (!session)
       throw new Error("You need to authenticate to perform such actions");
     const deletedCartItem = await CartModel.findOneAndDelete({ productId });
-    console.log(deletedCartItem, productId);
     if (!deletedCartItem) throw new Error("Failed to remove item from cart");
 
     revalidatePath("/cart");

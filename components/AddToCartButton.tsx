@@ -1,6 +1,7 @@
 "use client";
 
 import { addToCart } from "@/lib/cart.action";
+import { useSession } from "next-auth/react";
 import { useTransition } from "react";
 import { FaShoppingCart } from "react-icons/fa";
 import { toast } from "react-toastify";
@@ -11,6 +12,7 @@ interface AddToCartProps {
   showIcon?: boolean;
   price: number;
 }
+
 export default function AddToCartButton({
   showIcon,
   productId,
@@ -18,8 +20,13 @@ export default function AddToCartButton({
   price,
 }: AddToCartProps) {
   const [isTransitioning, startTransition] = useTransition();
+  const session = useSession();
 
   function handleAddToCart() {
+    if (!session.data) {
+      toast("You need to logic to make such changes", { type: "warning" });
+      return;
+    }
     startTransition(async () => {
       const result = await addToCart({
         productId,

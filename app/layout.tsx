@@ -1,4 +1,5 @@
 import Announcement from "@/components/Announcement";
+import CartIndicator from "@/components/CartIndicator";
 import Footer from "@/components/Footer";
 import Navbar from "@/components/Navbar";
 import { popois } from "@/lib/font";
@@ -24,6 +25,7 @@ export default function RootLayout({
         <SessionProvider>
           <Navbar>
             <Announcement />
+            <CartIndicator />
           </Navbar>
           {children}
           <Footer />

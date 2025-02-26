@@ -1,33 +1,24 @@
 "use client";
 
-import { getCartItems } from "@/lib/cart.action";
 import Link from "next/link";
-import { useEffect, useState } from "react";
-import { BsCart2 } from "react-icons/bs";
+import { useState } from "react";
 import { FaSearch } from "react-icons/fa";
 import { GrFavorite } from "react-icons/gr";
 import { MdMenu } from "react-icons/md";
 import MobileVersionNavbar from "./MobileVersionNavbar";
 import NavItems from "./NavItems";
 import UserIcon from "./UserIcon";
+
 interface ProsType {
-  children: React.ReactNode;
+  children: React.ReactNode[];
 }
 
 export default function Navbar({ children }: ProsType) {
   const [isOpen, setIsOpen] = useState(false);
-  const [cartItems, setCartItems] = useState(0);
-
-  useEffect(function () {
-    (async () => {
-      const { data } = await getCartItems();
-      setCartItems(data.length);
-    })();
-  }, []);
 
   return (
     <section className="w-full border-b border-secondaryLightGraryColor/60">
-      {children}
+      {children[0]}
       <div className="grid w-full grid-cols-1 place-items-center gap-x-6 gap-y-4 px-5 py-10 shadow-lg shadow-secondaryWhiteColorThree md:grid-cols-[1fr_2fr_2fr_1fr] md:px-20 md:py-4 lg:grid-cols-[1fr_2fr_2fr]">
         <div className="w-full">
           <Link
@@ -53,16 +44,7 @@ export default function Navbar({ children }: ProsType) {
           </form>
           <div className="flex items-center justify-center gap-x-4">
             <GrFavorite className="mt-1 h-4 w-4 text-black/60 md:scale-[1.1]" />
-            <Link
-              href={"/cart"}
-              className="relative rounded-md bg-primaryGrayColorTwo/30 px-3 py-2"
-            >
-              <BsCart2 className="h-4 w-4 text-black/50 md:scale-[1.1]" />
-              {cartItems > 0 ? (
-                <div className="absolute -top-2 size-3 rounded-full bg-starColor font-bold text-teritiaryOrangeColor" />
-              ) : null}
-            </Link>
-
+            {children[1]}
             <UserIcon />
           </div>
         </div>

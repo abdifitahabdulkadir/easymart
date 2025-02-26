@@ -1,13 +1,14 @@
 import { getCartItems } from "@/lib/cart.action";
 import { popois } from "@/lib/font";
 import { decodeProductCategory } from "@/lib/util";
+import Image from "next/image";
 import Link from "next/link";
 import CartProductItem from "./CartProductItem";
 
 export default async function FetchCarts() {
   const { data } = await getCartItems();
 
-  const totalPrice = (data as []).reduce(
+  const totalPrice = (data as [])?.reduce(
     (
       prev: number,
       { price, quantity }: { price: number; quantity: number },
@@ -16,6 +17,29 @@ export default async function FetchCarts() {
     },
     0,
   );
+  if (data === undefined)
+    return (
+      <div className="flex h-full w-full flex-col items-center justify-center">
+        <Image
+          src={"/cart-empty.svg"}
+          alt="cart image"
+          width={300}
+          height={300}
+          quality={90}
+          className="object-contain"
+        />
+
+        <p className="tex-sm px-3 text-center font-bold text-primaryGrayColor md:text-xl lg:text-2xl">
+          Huury up! to get your favorite item and bring here.
+        </p>
+        <Link
+          href={"/"}
+          className="mt-6 cursor-pointer rounded-md bg-starColor px-5 py-2 text-white transition-all duration-200 hover:scale-x-[1.4] hover:bg-opacity-90"
+        >
+          Shop Now
+        </Link>
+      </div>
+    );
   return (
     <>
       <div className="mt-10 flex w-full flex-col gap-y-4">
@@ -81,6 +105,13 @@ export default async function FetchCarts() {
           />
         </div>
       </div>
+
+      <Link
+        href={"/checkout"}
+        className="flex items-center justify-center rounded-[4px] bg-teritiaryOrangeColor px-2 py-3 text-[.6rem] text-white transition-all duration-300 hover:bg-teritiaryGreenColor"
+      >
+        Proceed To Checkout
+      </Link>
     </>
   );
 }

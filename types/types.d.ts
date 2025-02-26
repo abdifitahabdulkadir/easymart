@@ -20,4 +20,4 @@ export type CartParams = {
   price: number;
 };
 
-export type WishlistParams = Omit<CartParams, "price">;
+export type WishlistParams = CartParams;

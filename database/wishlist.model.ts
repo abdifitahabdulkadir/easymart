@@ -4,6 +4,7 @@ interface WishListI {
   categoryName: string;
   productId: string;
   ownerId: Schema.Types.ObjectId;
+  price: number;
 }
 
 const WishListSchema = new Schema<WishListI>({
@@ -13,6 +14,10 @@ const WishListSchema = new Schema<WishListI>({
   },
   productId: {
     type: String,
+    required: true,
+  },
+  price: {
+    type: Number,
     required: true,
   },
   ownerId: {

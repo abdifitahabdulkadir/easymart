@@ -1,49 +1,48 @@
 "use client";
 import { MdOutlineNavigateNext } from "react-icons/md";
-
 const sideBarItems = [
   {
     id: 1,
-    text: "Women's Fashin",
+    text: "Women's Fashion",
     showArrow: true,
   },
   {
     id: 2,
-    text: "Mens's Fashin",
+    text: "Men's Fashion",
     showArrow: true,
   },
   {
     id: 3,
-    text: "Electeronics",
-    showArrow: false,
-  },
-  {
-    id: 3,
-    text: "Home & lifeStyle",
+    text: "Electronics",
     showArrow: false,
   },
   {
     id: 4,
-    text: "Medince",
+    text: "Home & Lifestyle",
     showArrow: false,
   },
   {
     id: 5,
-    text: "Sports & Outdoor",
+    text: "Medicine",
     showArrow: false,
   },
   {
     id: 6,
-    text: "Bay's & Toys",
+    text: "Sports & Outdoor",
     showArrow: false,
   },
   {
     id: 7,
-    text: "Groceries & Pets",
+    text: "Baby's & Toys",
     showArrow: false,
   },
   {
     id: 8,
+    text: "Groceries & Pets",
+    showArrow: false,
+  },
+  {
+    id: 9,
     text: "Health & Beauty",
     showArrow: false,
   },

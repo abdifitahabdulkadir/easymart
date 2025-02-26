@@ -10,7 +10,7 @@ import AddToWishList from "./AddToWishList";
 import DeleteProduct from "./DeleteProduct";
 
 function decoder(items: [], id: string) {
-  const check = items.filter(
+  const check = items?.filter(
     (item: { productId: string; ownerId: string }) => item.productId === id,
   )[0];
   return check === undefined ? false : check["productId"] === id;
@@ -56,8 +56,8 @@ export default async function ProductItem({
     >
       <div className="relative flex h-40 items-center justify-center rounded-[4px] bg-secondaryWhiteColorOne px-5 py-4">
         {discount && (
-          <div className="absolute left-2 top-2 flex h-[26px] w-[55px] items-center justify-center rounded-[4px] bg-teritiaryOrangeColor text-xs font-light italic text-white">
-            <span>{`-${discount}%`}</span>
+          <div className="absolute left-2 top-2 flex h-[26px] w-fit items-center justify-center rounded-[4px] bg-teritiaryOrangeColor px-4 text-xs font-light italic text-white">
+            <span>{`-INR. ${discount}%`}</span>
           </div>
         )}
         {isNew && (
@@ -116,7 +116,11 @@ export default async function ProductItem({
             />
           )}
           {!isAddedToWishlist && (
-            <AddToWishList productId={id} categoryName={categoryName} />
+            <AddToWishList
+              productId={id}
+              price={currentPrice || originalPrice}
+              categoryName={categoryName}
+            />
           )}
         </div>
       </div>
@@ -130,11 +134,11 @@ export default async function ProductItem({
         <div className={`${priceRatingClassName}`}>
           <div className="flex items-center gap-x-4 text-base">
             {currentPrice !== 0 && (
-              <span className="text-teritiaryOrangeColor">{`\$${currentPrice}`}</span>
+              <span className="text-teritiaryOrangeColor">{`INR. ${currentPrice}`}</span>
             )}
 
             {originalPrice !== 0 && !isAddedToWishlist && (
-              <span className="text-primaryGrayColorTwo line-through">{`\$${originalPrice}`}</span>
+              <span className="text-primaryGrayColorTwo line-through">{`INR. ${originalPrice}`}</span>
             )}
           </div>
 
@@ -147,7 +151,7 @@ export default async function ProductItem({
                   );
                 })}
               </div>
-              <span className="text-primaryGrayColorTwo">{`(${soldTimes})`}</span>
+              <span className="text-primaryGrayColorTwo">{`(INR. ${soldTimes})`}</span>
             </div>
           )}
         </div>

@@ -39,12 +39,6 @@ export default async function CartPage() {
         }
       >
         <FetchCarts />
-        <Link
-          href={"/checkout"}
-          className="flex items-center justify-center rounded-[4px] bg-teritiaryOrangeColor px-2 py-3 text-[.6rem] text-white transition-all duration-300 hover:bg-teritiaryGreenColor"
-        >
-          Proceed To Checkout
-        </Link>
       </Suspense>
     </div>
   );

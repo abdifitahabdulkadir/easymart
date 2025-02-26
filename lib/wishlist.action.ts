@@ -9,6 +9,7 @@ import dbConnect from "./dbconnection";
 export async function addToWishList({
   categoryName,
   productId,
+  price,
 }: WishlistParams) {
   const session = await auth();
   await dbConnect();
@@ -17,6 +18,7 @@ export async function addToWishList({
       categoryName,
       productId,
       ownerId: session?.user?.id,
+      price,
     };
     const [newWishList] = await WishListModel.create([
       {

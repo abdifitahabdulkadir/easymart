@@ -1,11 +1,35 @@
+import MoveToCart from "@/components/MoveToCart";
 import ProductItem from "@/components/ProductItem";
 import { PrimaryTitleGenerator } from "@/components/Titles";
 import { exploreProducts } from "@/lib";
 import { decodeProductCategory } from "@/lib/util";
 import { getWishlistsItems } from "@/lib/wishlist.action";
+import Image from "next/image";
+import Link from "next/link";
 
 export default async function page() {
   const { data } = await getWishlistsItems();
+  if (data === undefined || !data.length)
+    return (
+      <div className="flex h-full w-full flex-col items-center justify-center">
+        <Image
+          src={"/wishlist-emtpy.svg"}
+          width={300}
+          height={300}
+          alt="wishlist empty state illustration"
+          className="object-contain"
+        />
+        <p className="tex-sm px-3 text-center font-bold text-primaryGrayColor md:text-xl lg:text-2xl">
+          Huury up! to get your favorite item and bring here.
+        </p>
+        <Link
+          href={"/"}
+          className="mt-6 cursor-pointer rounded-md bg-starColor px-5 py-2 text-white transition-all duration-200 hover:scale-x-[1.4] hover:bg-opacity-90"
+        >
+          Shop Now
+        </Link>
+      </div>
+    );
   return (
     <div className="flex w-full flex-col items-center justify-center gap-y-10 px-10 py-10">
       <div className="flex w-full items-center justify-between">
@@ -15,9 +39,7 @@ export default async function page() {
             ({data !== undefined ? data.length : null})
           </span>
         </h6>
-        <button className="flex cursor-pointer items-center justify-center rounded-[4px] border border-black/30 px-3 py-2 transition-all duration-200 hover:bg-secondaryLightGraryColor hover:text-black">
-          Move All To Bag
-        </button>
+        <MoveToCart items={data ?? []} />
       </div>
       <div className="grid w-full place-items-center gap-x-3 gap-y-3 px-10 py-5 md:grid-cols-3 md:px-3 lg:grid-cols-4">
         {data !== undefined &&
