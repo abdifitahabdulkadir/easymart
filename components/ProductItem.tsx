@@ -165,7 +165,7 @@ export default async function ProductItem({
                   }}
                   key={color}
                   className={`h-4 w-4 cursor-pointer rounded-full transition-all duration-150 hover:scale-[1.2] hover:border-2 hover:border-green-600`}
-                ></div>
+                />
               );
             })}
           </div>
