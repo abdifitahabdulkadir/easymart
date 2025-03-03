@@ -1,6 +1,8 @@
 "use client";
 
+import { updateUrlQueryParams } from "@/lib/url";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { FaSearch } from "react-icons/fa";
 import { GrFavorite } from "react-icons/gr";
@@ -15,6 +17,15 @@ interface ProsType {
 
 export default function Navbar({ children }: ProsType) {
   const [isOpen, setIsOpen] = useState(false);
+  const [search, setSearchInput] = useState("");
+  const router = useRouter();
+  function handleSearchItem() {
+    const result = updateUrlQueryParams({
+      value: search,
+      key: "query",
+    });
+    router.push(result, { scroll: false });
+  }
 
   return (
     <section className="w-full border-b border-secondaryLightGraryColor/60">
@@ -32,9 +43,17 @@ export default function Navbar({ children }: ProsType) {
           <NavItems className="flex-row text-xs lg:flex" />
         </nav>
         <div className="order-3 col-span-2 flex w-full items-center justify-end gap-x-5 md:order-2 md:col-span-2 lg:order-3 lg:col-span-1">
-          <form action="" className="w-full">
+          <form
+            onSubmit={(e) => {
+              e.preventDefault();
+              handleSearchItem();
+            }}
+            className="w-full"
+          >
             <div className="group relative h-[38px] w-full">
               <input
+                value={search}
+                onChange={(e) => setSearchInput(e.target.value)}
                 type="text"
                 placeholder="What are you looking for?"
                 className="line-clamp-1 h-full w-full rounded-[4px] bg-secondaryWhiteColorOne px-4 py-2 pr-10 text-xs font-light text-black transition-colors duration-150 hover:border-[2px] hover:border-teritiaryLightOrangeColor focus:outline-0 focus:ring-0"

@@ -68,7 +68,7 @@ export default function IncrmenetDecrementCart({
 
       <div className="flex w-full items-center justify-center px-10">
         <h5 className="flex w-full items-center justify-center">
-          {`$${currentPrice && currentPrice * quantity}`}
+          {`INR. ${currentPrice && currentPrice * quantity}`}
         </h5>
         <DeleteProduct productId={id} />
       </div>

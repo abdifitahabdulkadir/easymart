@@ -24,7 +24,7 @@ export default function CartProductItem({
         </h6>
       </div>
       <h5 className="flex w-full items-center justify-center">
-        {`$${currentPrice}`}
+        {`INR. ${currentPrice}`}
       </h5>
 
       <IncrmenetDecrementCart

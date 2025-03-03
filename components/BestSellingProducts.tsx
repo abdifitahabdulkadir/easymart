@@ -7,7 +7,7 @@ import ProductItem from "./ProductItem";
 import { BestSellingProductsTimer } from "./Timers";
 import { PrimaryTitleGenerator, SecondaryTitleGenerator } from "./Titles";
 
-export default function BestSellingProducts() {
+export default function BestSellingProducts({ query }: { query: string }) {
   return (
     <div
       className={`flex w-full flex-col items-center py-20 ${interFont.className}`}
@@ -26,11 +26,21 @@ export default function BestSellingProducts() {
       </div>
 
       <div className="grid w-full place-items-center gap-x-3 gap-y-3 px-10 py-5 md:grid-cols-3 md:px-3 lg:grid-cols-4">
-        {bestSellingProducts.map((item, index) => {
-          return (
-            <ProductItem categoryName="best-Selling" key={index} item={item} />
-          );
-        })}
+        {bestSellingProducts
+          .filter((item) =>
+            query === undefined
+              ? item
+              : item.name.toLowerCase().includes(query?.toLowerCase() ?? ""),
+          )
+          .map((item, index) => {
+            return (
+              <ProductItem
+                categoryName="best-Selling"
+                key={index}
+                item={item}
+              />
+            );
+          })}
       </div>
 
       <div className="mt-20 grid h-[25rem] w-fit grid-cols-[1fr_2fr] gap-x-10 bg-black px-7 py-4 text-white md:px-2 lg:px-10">

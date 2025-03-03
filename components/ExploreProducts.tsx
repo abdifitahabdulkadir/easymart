@@ -4,7 +4,7 @@ import DoubleArrows from "./DoubleArrows";
 import ProductItem from "./ProductItem";
 import { PrimaryTitleGenerator, SecondaryTitleGenerator } from "./Titles";
 
-export default function ExploreProducts() {
+export default function ExploreProducts({ query }: { query: string }) {
   return (
     <div className="flex min-w-full flex-col items-center justify-center py-10">
       <div className="mb-5 flex w-full flex-col justify-start gap-y-4">
@@ -15,16 +15,22 @@ export default function ExploreProducts() {
         </div>
       </div>
       <div className="mt-7 grid w-full grid-cols-1 gap-4 px-10 sm:grid-cols-2 sm:px-4 md:grid-cols-3 lg:grid-cols-4 lg:px-0">
-        {exploreProducts.map((item) => {
-          return (
-            <ProductItem
-              categoryName="explore"
-              key={item.id}
-              item={item}
-              priceRatingClassName="grid grid-cols-[1fr_4fr] gap-x-1 "
-            />
-          );
-        })}
+        {exploreProducts
+          .filter((item) =>
+            query === undefined
+              ? item
+              : item.name.toLowerCase().includes(query?.toLowerCase() ?? ""),
+          )
+          .map((item) => {
+            return (
+              <ProductItem
+                categoryName="explore"
+                key={item.id}
+                item={item}
+                priceRatingClassName="grid grid-cols-[1fr_4fr] gap-x-1 "
+              />
+            );
+          })}
       </div>
       {/* view all button */}
       <Link

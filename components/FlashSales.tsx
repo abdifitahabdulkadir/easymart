@@ -6,7 +6,7 @@ import ProductItem from "./ProductItem";
 import { FlashItemsTimer } from "./Timers";
 import { PrimaryTitleGenerator, SecondaryTitleGenerator } from "./Titles";
 
-export default function FlashSales() {
+export default function FlashSales({ query }: { query: string }) {
   return (
     <div
       className={`flex w-full flex-col items-center border-b border-gray-300 py-20 ${interFont.className}`}
@@ -24,16 +24,22 @@ export default function FlashSales() {
       </div>
 
       <div className="grid w-full gap-x-3 gap-y-2 px-10 py-5 md:grid-cols-2 md:px-3 lg:grid-cols-4">
-        {flashItems.map((item, index) => {
-          return (
-            <ProductItem
-              categoryName="flash-Products"
-              key={index}
-              item={item}
-              priceRatingClassName="flex flex-row lg:flex-col gap-y-1 gap-x-3 w-full justify-around"
-            />
-          );
-        })}
+        {flashItems
+          .filter((item) =>
+            query === undefined
+              ? item
+              : item.name.toLowerCase().includes(query?.toLowerCase() ?? ""),
+          )
+          .map((item, index) => {
+            return (
+              <ProductItem
+                categoryName="flash-Products"
+                key={index}
+                item={item}
+                priceRatingClassName="flex flex-row lg:flex-col gap-y-1 gap-x-3 w-full justify-around"
+              />
+            );
+          })}
       </div>
 
       {/* view all button */}

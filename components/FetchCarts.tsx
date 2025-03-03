@@ -95,12 +95,12 @@ export default async function FetchCarts() {
 
           <CartSubTotalItemBuilder
             text="Subtotal:"
-            value={String(`$ ${totalPrice}`)}
+            value={String(`INR. ${totalPrice}`)}
           />
           <CartSubTotalItemBuilder text="Shipping:" value="free" />
           <CartSubTotalItemBuilder
             text="Total:"
-            value={String(`$ ${totalPrice}`)}
+            value={String(`INR. ${totalPrice}`)}
             includeBorder={false}
           />
         </div>

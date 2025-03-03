@@ -19,5 +19,9 @@ export type CartParams = {
   productId: string;
   price: number;
 };
+export interface PageParams {
+  params: Promise<Record<string, string>>;
+  searchParams: Promise<Record<string, string>>;
+}
 
 export type WishlistParams = CartParams;
