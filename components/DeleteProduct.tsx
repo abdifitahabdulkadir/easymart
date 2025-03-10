@@ -28,7 +28,7 @@ export default function DeleteProduct({ productId }: DeletePros) {
           productId,
         });
 
-      if (result.success) {
+      if (result?.success) {
         toast("Succesfully Delete Product from Wishlist", {
           type: "success",
           position: "bottom-right",

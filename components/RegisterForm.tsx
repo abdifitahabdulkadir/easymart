@@ -30,7 +30,7 @@ export default function RegisterForm({ handleClick }: ProsType) {
   function handleFormSubmit(data: z.infer<typeof SignUpSchema>) {
     startTranstion(async () => {
       const result = await signUpWithCrendentials(data);
-      if (result.success) {
+      if (result?.success) {
         toast("Account created successfully", { type: "success" });
         router.push("/");
         return;

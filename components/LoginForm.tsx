@@ -30,7 +30,7 @@ export default function LoginForm({ handleClick }: ProsType) {
   function handleFormSubmit(data: z.infer<typeof SignInSchema>) {
     startTranstion(async () => {
       const result = await signInWithCredentials(data);
-      if (result.success) {
+      if (result?.success) {
         router.push("/");
         return;
       }
