@@ -4,7 +4,7 @@ import Credentials from "next-auth/providers/credentials";
 import { SignInSchema } from "./lib/validations";
 
 const message = "Invalid Crendentials, Please check your email and password";
-class InvalidLoginError extends CredentialsSignin {
+export class InvalidLoginError extends CredentialsSignin {
   code: string = message;
 }
 
@@ -25,7 +25,6 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
             method: "POST",
             body: JSON.stringify(email),
           }).then((res) => res.json());
-          console.log(data);
           if (!success) throw new InvalidLoginError();
 
           const enteredPassword = password;

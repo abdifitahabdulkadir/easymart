@@ -1,6 +1,6 @@
 "use server";
 
-import { signIn } from "@/auth";
+import { InvalidLoginError, signIn } from "@/auth";
 import UserModel from "@/database/user.model";
 import { z } from "zod";
 import dbConnect from "./dbconnection";
@@ -46,8 +46,10 @@ export async function signInWithCredentials(
 
     return { success: true };
   } catch (error) {
-    if (error instanceof Error)
-      return { success: false, message: error?.code ?? error.message };
+    if (error instanceof InvalidLoginError)
+      return { success: false, message: error.code };
+    else if (error instanceof Error)
+      return { success: false, message: error.message };
     return { success: false, message: "Something went wrong" };
   }
 }
