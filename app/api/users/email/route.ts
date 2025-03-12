@@ -3,8 +3,9 @@ import { NextResponse } from "next/server";
 
 export async function POST(req: Request) {
   const email = await req.json();
+
   try {
-    const user = await UserModel.findOne({ email });
+    const user = await UserModel.findOne({ email: String(email) });
     if (!user)
       return NextResponse.json({ success: false, data: null }, { status: 404 });
 
