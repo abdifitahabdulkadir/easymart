@@ -34,6 +34,7 @@ export default function LoginForm({ handleClick }: ProsType) {
         router.push("/");
         return;
       }
+      console.log(result);
       toast(result.message, { type: "error" });
     });
   }

@@ -1,16 +1,14 @@
-import NextAuth from "next-auth";
+import NextAuth, { CredentialsSignin } from "next-auth";
 import Credentials from "next-auth/providers/credentials";
 
 import { SignInSchema } from "./lib/validations";
 
-// const message = "Invalid Crendentials, Please check your email and password";
-// class InvalidLoginError extends CredentialsSignin {
-//   constructor(public code: string) {
-//     super(code);
-//   }
-// }
+const message = "Invalid Crendentials, Please check your email and password";
+class InvalidLoginError extends CredentialsSignin {
+  code: string = message;
+}
 
-const baseUrl = process.env.NEXT_PUBLIC_API_URL;
+const BASE_URL = process.env.NEXT_PUBLIC_API_URL;
 export const { handlers, auth, signIn, signOut } = NextAuth({
   providers: [
     Credentials({
@@ -23,11 +21,12 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
         if (validate.success) {
           const { email, password } = validate.data;
 
-          const { data, success } = await fetch(`${baseUrl}/api/users/email`, {
+          const { data, success } = await fetch(`${BASE_URL}/api/users/email`, {
             method: "POST",
             body: JSON.stringify(email),
           }).then((res) => res.json());
-          if (!success) return null;
+          console.log(data);
+          if (!success) throw new InvalidLoginError();
 
           const enteredPassword = password;
           if (enteredPassword === data.password)

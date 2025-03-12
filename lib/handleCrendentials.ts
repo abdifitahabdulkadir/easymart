@@ -47,7 +47,7 @@ export async function signInWithCredentials(
     return { success: true };
   } catch (error) {
     if (error instanceof Error)
-      return { success: false, message: error.message };
+      return { success: false, message: error?.code ?? error.message };
     return { success: false, message: "Something went wrong" };
   }
 }
