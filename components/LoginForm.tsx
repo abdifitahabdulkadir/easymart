@@ -38,7 +38,7 @@ export default function LoginForm({ handleClick }: ProsType) {
     });
   }
 
-  console.log(process.env.PUBLIC_API_URL);
+  console.log("current ", process.env.AUTH_API_URL);
   return (
     <div
       className={`flex w-full flex-col gap-y-5 px-10 py-10 md:px-5 lg:w-[70%] lg:px-1 ${popois.className}`}
