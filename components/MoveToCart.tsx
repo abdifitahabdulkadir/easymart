@@ -35,7 +35,7 @@ export default function MoveToCart({ items }: MoveToCartProps) {
           });
         }
         toast("Successfully moved items to the cart", { type: "success" });
-      } catch (error) {
+      } catch {
         toast("Failed to add to cart", { type: "error" });
       }
     });

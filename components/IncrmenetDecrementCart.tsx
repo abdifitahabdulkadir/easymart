@@ -21,7 +21,7 @@ export default function IncrmenetDecrementCart({
   async function updateCartQuantity() {
     try {
       await incrmentDecrementCart(id);
-    } catch (e) {
+    } catch {
       toast("Failed to Incrmenet/Decremnt cart item", {
         type: "error",
       });
