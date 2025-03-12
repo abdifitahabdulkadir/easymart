@@ -34,10 +34,11 @@ export default function LoginForm({ handleClick }: ProsType) {
         router.push("/");
         return;
       }
-      console.log(result);
       toast(result.message, { type: "error" });
     });
   }
+
+  console.log(process.env.PUBLIC_API_URL);
   return (
     <div
       className={`flex w-full flex-col gap-y-5 px-10 py-10 md:px-5 lg:w-[70%] lg:px-1 ${popois.className}`}

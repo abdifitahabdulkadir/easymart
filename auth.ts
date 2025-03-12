@@ -8,9 +8,7 @@ export class InvalidLoginError extends CredentialsSignin {
   code: string = message;
 }
 
-const BASE_URL =
-  process.env.NEXT_PUBLIC_API_URL ?? process.env.NEXT_PUBLIC_VERCEL_URL;
-console.log(BASE_URL);
+const BASE_URL = process.env.PUBLIC_API_URL;
 export const { handlers, auth, signIn, signOut } = NextAuth({
   providers: [
     Credentials({

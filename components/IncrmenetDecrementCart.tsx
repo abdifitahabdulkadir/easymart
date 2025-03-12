@@ -22,7 +22,6 @@ export default function IncrmenetDecrementCart({
     try {
       await incrmentDecrementCart(id);
     } catch (e) {
-      console.log(String(e)[3]);
       toast("Failed to Incrmenet/Decremnt cart item", {
         type: "error",
       });
