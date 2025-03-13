@@ -26,7 +26,6 @@ export async function signUpWithCrendentials(
 
     if (!newUser) throw new Error("failed to create Account! try again");
     await signIn("credentials", { email, password, redirect: false });
-
     return { success: true };
   } catch (error) {
     if (error instanceof Error)
@@ -43,7 +42,6 @@ export async function signInWithCredentials(
 
   try {
     await signIn("credentials", { email, password, redirect: false });
-
     return { success: true };
   } catch (error) {
     if (error instanceof InvalidLoginError)

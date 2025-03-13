@@ -2,6 +2,7 @@ import Announcement from "@/components/Announcement";
 import CartIndicator from "@/components/CartIndicator";
 import Footer from "@/components/Footer";
 import Navbar from "@/components/Navbar";
+import NavItems from "@/components/NavItems";
 import { popois } from "@/lib/font";
 import type { Metadata } from "next";
 import { SessionProvider } from "next-auth/react";
@@ -25,6 +26,7 @@ export default function RootLayout({
         <SessionProvider>
           <Navbar>
             <Announcement />
+            <NavItems className="flex-row text-xs lg:flex" />
             <CartIndicator />
           </Navbar>
           {children}

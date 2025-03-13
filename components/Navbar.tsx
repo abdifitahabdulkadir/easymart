@@ -8,7 +8,6 @@ import { FaSearch } from "react-icons/fa";
 import { GrFavorite } from "react-icons/gr";
 import { MdMenu } from "react-icons/md";
 import MobileVersionNavbar from "./MobileVersionNavbar";
-import NavItems from "./NavItems";
 import UserIcon from "./UserIcon";
 
 interface ProsType {
@@ -19,6 +18,7 @@ export default function Navbar({ children }: ProsType) {
   const [isOpen, setIsOpen] = useState(false);
   const [search, setSearchInput] = useState("");
   const router = useRouter();
+
   function handleSearchItem() {
     const result = updateUrlQueryParams({
       value: search,
@@ -39,9 +39,7 @@ export default function Navbar({ children }: ProsType) {
             EasyMart
           </Link>
         </div>
-        <nav className="hidden w-fit lg:block">
-          <NavItems className="flex-row text-xs lg:flex" />
-        </nav>
+        <nav className="hidden w-fit lg:block">{children[1]}</nav>
         <div className="order-3 col-span-2 flex w-full items-center justify-end gap-x-5 md:order-2 md:col-span-2 lg:order-3 lg:col-span-1">
           <form
             onSubmit={(e) => {
@@ -63,7 +61,7 @@ export default function Navbar({ children }: ProsType) {
           </form>
           <div className="flex items-center justify-center gap-x-4">
             <GrFavorite className="mt-1 h-4 w-4 text-black/60 md:scale-[1.1]" />
-            {children[1]}
+            {children[2]}
             <UserIcon />
           </div>
         </div>

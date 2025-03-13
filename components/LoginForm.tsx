@@ -38,7 +38,6 @@ export default function LoginForm({ handleClick }: ProsType) {
     });
   }
 
-  console.log("current ", process.env.AUTH_API_URL);
   return (
     <div
       className={`flex w-full flex-col gap-y-5 px-10 py-10 md:px-5 lg:w-[70%] lg:px-1 ${popois.className}`}
@@ -63,7 +62,7 @@ export default function LoginForm({ handleClick }: ProsType) {
 
         <FormInputWrapper message={errors.password?.message ?? ""}>
           <input
-            type="password"
+            type="text"
             {...register("password")}
             placeholder="Password"
             className="px-3ring-black/30 w-full border-b-2 border-black/30 py-2 text-black outline-none placeholder:text-sm placeholder:text-black/30 lg:w-[70%]"

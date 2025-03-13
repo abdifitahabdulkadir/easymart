@@ -70,7 +70,7 @@ export default function RegisterForm({ handleClick }: ProsType) {
 
         <FormInputWrapper message={errors.password?.message ?? ""}>
           <input
-            type="password"
+            type="text"
             {...register("password")}
             placeholder="Password"
             className="px-3ring-black/30 w-full border-b-2 border-black/30 py-2 text-black outline-none placeholder:text-sm placeholder:text-black/30"
