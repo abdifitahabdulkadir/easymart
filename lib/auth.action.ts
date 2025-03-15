@@ -1,9 +1,9 @@
 "use server";
 
 import { InvalidLoginError, signIn } from "@/auth";
-import UserModel from "@/database/user.model";
 import { z } from "zod";
 import dbConnect from "./dbconnection";
+import prismaClient from "./prisma";
 import { SignInSchema, SignUpSchema } from "./validations";
 
 export async function signUpWithCrendentials(
@@ -13,16 +13,21 @@ export async function signUpWithCrendentials(
 
   const { email, password, name } = params!;
   try {
-    const existedUer = await UserModel.findOne({ email });
+    const existedUer = await prismaClient.user.findFirst({
+      where: {
+        email,
+      },
+    });
+
     if (existedUer) throw new Error("User is already existed");
 
-    const [newUser] = await UserModel.create([
-      {
+    const newUser = await prismaClient.user.create({
+      data: {
         name,
         email,
         password,
       },
-    ]);
+    });
 
     if (!newUser) throw new Error("failed to create Account! try again");
     await signIn("credentials", { email, password, redirect: false });

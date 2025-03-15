@@ -1,4 +1,4 @@
-import { bestSellingProducts, exploreProducts, flashItems } from "./";
+import { bestSellingProducts, exploreProducts, flashItems } from ".";
 
 // a funcion tha takes categoryName(e.g flash-items) and returns
 export function decodeProductCategory(categoryName: string) {

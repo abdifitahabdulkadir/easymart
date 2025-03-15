@@ -1,4 +1,4 @@
-import { exploreProducts } from "@/lib";
+import { exploreProducts } from "@/lib/index";
 import Link from "next/link";
 import DoubleArrows from "./DoubleArrows";
 import ProductItem from "./ProductItem";

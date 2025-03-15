@@ -1,5 +1,5 @@
+import { signInWithCredentials } from "@/lib/auth.action";
 import { popois } from "@/lib/font";
-import { signInWithCredentials } from "@/lib/handleCrendentials";
 import { SignInSchema } from "@/lib/validations";
 import { zodResolver } from "@hookform/resolvers/zod";
 import Link from "next/link";

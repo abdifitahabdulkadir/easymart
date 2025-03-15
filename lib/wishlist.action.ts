@@ -1,10 +1,10 @@
 "use server";
 
 import { auth } from "@/auth";
-import WishListModel from "@/database/wishlist.model";
 import { WishlistParams } from "@/types/types";
 import { revalidatePath } from "next/cache";
 import dbConnect from "./dbconnection";
+import prismaClient from "./prisma";
 
 export async function addToWishList({
   categoryName,
@@ -14,17 +14,20 @@ export async function addToWishList({
   const session = await auth();
   await dbConnect();
   try {
+    if (!session?.user?.id) {
+      throw new Error("User is not authenticated");
+    }
     const data = {
       categoryName,
       productId,
-      ownerId: session?.user?.id,
+      ownerId: session.user.id,
       price,
     };
-    const [newWishList] = await WishListModel.create([
-      {
+    const newWishList = await prismaClient.wishlist.create({
+      data: {
         ...data,
       },
-    ]);
+    });
 
     if (!newWishList) throw new Error("Failed to add Wishlist try again");
     revalidatePath("/");
@@ -45,7 +48,11 @@ export async function removeFromWishlist({
 }: Pick<WishlistParams, "productId">) {
   await dbConnect();
   try {
-    const deleteWishlist = await WishListModel.findOneAndDelete({ productId });
+    const deleteWishlist = await prismaClient.wishlist.delete({
+      where: {
+        productId,
+      },
+    });
     if (!deleteWishlist) throw new Error("Failed to remove item from wishlist");
     revalidatePath("/wishlist");
     return { success: true };
@@ -60,8 +67,10 @@ export async function getWishlistsItems() {
   const session = await auth();
   await dbConnect();
   try {
-    const wishlistItems = await WishListModel.find({
-      ownerId: session?.user?.id,
+    const wishlistItems = await prismaClient.wishlist.findMany({
+      where: {
+        ownerId: session?.user?.id,
+      },
     });
 
     if (!wishlistItems) return { success: false, data: [] };

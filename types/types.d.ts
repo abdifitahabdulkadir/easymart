@@ -24,4 +24,8 @@ export interface PageParams {
   searchParams: Promise<Record<string, string>>;
 }
 
+export interface IncrementDecrementParams {
+  productId: string;
+  operationType: "increment" | "decrement";
+}
 export type WishlistParams = CartParams;

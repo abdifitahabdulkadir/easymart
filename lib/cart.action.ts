@@ -1,10 +1,10 @@
 "use server";
 
 import { auth } from "@/auth";
-import CartModel from "@/database/cart.model";
-import { CartParams } from "@/types/types";
+import { CartParams, IncrementDecrementParams } from "@/types/types";
 import { revalidatePath } from "next/cache";
 import dbConnect from "./dbconnection";
+import prismaClient from "./prisma";
 
 export async function addToCart({
   categoryName,
@@ -15,20 +15,26 @@ export async function addToCart({
   await dbConnect();
   try {
     let newCartItem;
-    if (!session)
+    if (!session?.user)
       throw new Error("You need to authenticate to perform such actions");
 
-    newCartItem = await CartModel.findOne({ productId });
+    newCartItem = await prismaClient.cart.findFirst({
+      where: {
+        productId,
+      },
+    });
+
     if (newCartItem) return;
 
-    [newCartItem] = await CartModel.create([
-      {
-        categoryName: categoryName,
-        productId: productId,
-        ownerId: session?.user?.id,
+    newCartItem = await prismaClient.cart.create({
+      data: {
+        categoryName,
+        productId,
+        ownerId: session?.user?.id ?? "",
         price,
+        quantity: 1,
       },
-    ]);
+    });
 
     if (!newCartItem) throw new Error("Failed to add Cart try again");
 
@@ -60,7 +66,12 @@ export async function removeFromCart({
   try {
     if (!session)
       throw new Error("You need to authenticate to perform such actions");
-    const deletedCartItem = await CartModel.findOneAndDelete({ productId });
+
+    const deletedCartItem = await prismaClient.cart.delete({
+      where: {
+        productId: productId,
+      },
+    });
     if (!deletedCartItem) throw new Error("Failed to remove item from cart");
 
     revalidatePath("/cart");
@@ -79,8 +90,10 @@ export async function getCartItems() {
   try {
     if (!session)
       throw new Error("You need to authenticate to perform such actions");
-    const carItems = await CartModel.find({
-      ownerId: session?.user?.id,
+    const carItems = await prismaClient.cart.findMany({
+      where: {
+        ownerId: session?.user?.id,
+      },
     });
 
     if (!carItems) return { success: false, data: [] };
@@ -93,26 +106,52 @@ export async function getCartItems() {
   }
 }
 
-export async function incrmentDecrementCart(productId: string) {
+export async function incrmentDecrementCart(params: IncrementDecrementParams) {
   const session = await auth();
   await dbConnect();
   try {
     if (!session)
       throw new Error("You need to authenticate to perform such actions");
-    const carItems = await CartModel.findOneAndUpdate(
-      {
+
+    const { productId, operationType } = params;
+
+    if (operationType === "decrement") {
+      const oldQuantity = await prismaClient.cart.findFirst({
+        where: {
+          productId,
+        },
+        select: {
+          quantity: true,
+        },
+      });
+      if (oldQuantity?.quantity === 1) {
+        await removeFromCart({ productId });
+      } else {
+        await prismaClient.cart.update({
+          where: {
+            productId,
+          },
+          data: {
+            quantity: {
+              decrement: 1,
+            },
+          },
+        });
+      }
+
+      return { success: true };
+    }
+
+    await prismaClient.cart.update({
+      where: {
         productId,
       },
-      {
-        $inc: {
-          quantity: 1,
+      data: {
+        quantity: {
+          increment: 1,
         },
       },
-    );
-
-    if (!carItems) return { success: false, data: [] };
-
-    return { success: true, data: JSON.parse(JSON.stringify(carItems)) };
+    });
   } catch (error) {
     if (error instanceof Error)
       return { success: false, message: error.message, status: 400 };

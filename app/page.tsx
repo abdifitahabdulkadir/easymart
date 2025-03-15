@@ -8,6 +8,7 @@ import { PageParams } from "@/types/types";
 
 export default async function Home({ searchParams }: PageParams) {
   const { query } = await searchParams;
+
   return (
     <main className="w-full overflow-x-hidden" id="main">
       <div className="flex h-full w-full flex-col items-center justify-center px-3 lg:px-20">

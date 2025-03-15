@@ -1,5 +1,5 @@
-import { bestSellingProducts } from "@/lib";
 import { interFont, popois } from "@/lib/font";
+import { bestSellingProducts } from "@/lib/index";
 import Image from "next/image";
 import Link from "next/link";
 import Button from "./Button";

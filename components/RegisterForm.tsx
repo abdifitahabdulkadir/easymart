@@ -1,5 +1,5 @@
+import { signUpWithCrendentials } from "@/lib/auth.action";
 import { popois } from "@/lib/font";
-import { signUpWithCrendentials } from "@/lib/handleCrendentials";
 import { SignUpSchema } from "@/lib/validations";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useRouter } from "next/navigation";
