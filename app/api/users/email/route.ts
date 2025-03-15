@@ -1,6 +1,7 @@
 import UserModel from "@/database/user.model";
 import { NextResponse } from "next/server";
 
+export const runtime = "edge";
 export async function POST(req: Request) {
   const email = await req.json();
 
