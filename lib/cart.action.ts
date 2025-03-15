@@ -3,7 +3,6 @@
 import { auth } from "@/auth";
 import { CartParams, IncrementDecrementParams } from "@/types/types";
 import { revalidatePath } from "next/cache";
-import dbConnect from "./dbconnection";
 import prismaClient from "./prisma";
 
 export async function addToCart({
@@ -12,7 +11,7 @@ export async function addToCart({
   productId,
 }: CartParams) {
   const session = await auth();
-  await dbConnect();
+
   try {
     let newCartItem;
     if (!session?.user)
@@ -61,7 +60,6 @@ export async function addToCart({
 export async function removeFromCart({
   productId,
 }: Pick<CartParams, "productId">) {
-  await dbConnect();
   const session = await auth();
   try {
     if (!session)
@@ -86,7 +84,7 @@ export async function removeFromCart({
 
 export async function getCartItems() {
   const session = await auth();
-  await dbConnect();
+
   try {
     if (!session)
       throw new Error("You need to authenticate to perform such actions");
@@ -108,7 +106,7 @@ export async function getCartItems() {
 
 export async function incrmentDecrementCart(params: IncrementDecrementParams) {
   const session = await auth();
-  await dbConnect();
+
   try {
     if (!session)
       throw new Error("You need to authenticate to perform such actions");

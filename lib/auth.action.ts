@@ -2,15 +2,12 @@
 
 import { InvalidLoginError, signIn } from "@/auth";
 import { z } from "zod";
-import dbConnect from "./dbconnection";
 import prismaClient from "./prisma";
 import { SignInSchema, SignUpSchema } from "./validations";
 
 export async function signUpWithCrendentials(
   params: z.infer<typeof SignUpSchema>,
 ) {
-  await dbConnect();
-
   const { email, password, name } = params!;
   try {
     const existedUer = await prismaClient.user.findFirst({
@@ -42,7 +39,6 @@ export async function signUpWithCrendentials(
 export async function signInWithCredentials(
   params: z.infer<typeof SignInSchema>,
 ) {
-  await dbConnect();
   const { email, password } = params!;
 
   try {

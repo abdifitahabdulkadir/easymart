@@ -3,7 +3,6 @@
 import { auth } from "@/auth";
 import { WishlistParams } from "@/types/types";
 import { revalidatePath } from "next/cache";
-import dbConnect from "./dbconnection";
 import prismaClient from "./prisma";
 
 export async function addToWishList({
@@ -12,7 +11,7 @@ export async function addToWishList({
   price,
 }: WishlistParams) {
   const session = await auth();
-  await dbConnect();
+
   try {
     if (!session?.user?.id) {
       throw new Error("User is not authenticated");
@@ -46,7 +45,6 @@ export async function addToWishList({
 export async function removeFromWishlist({
   productId,
 }: Pick<WishlistParams, "productId">) {
-  await dbConnect();
   try {
     const deleteWishlist = await prismaClient.wishlist.delete({
       where: {
@@ -65,7 +63,7 @@ export async function removeFromWishlist({
 
 export async function getWishlistsItems() {
   const session = await auth();
-  await dbConnect();
+
   try {
     const wishlistItems = await prismaClient.wishlist.findMany({
       where: {
