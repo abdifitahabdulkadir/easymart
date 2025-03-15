@@ -6,10 +6,9 @@ export async function POST(req: Request) {
 
   try {
     const user = await UserModel.findOne({ email: String(email) });
-    if (!user)
-      return NextResponse.json({ success: false, data: null }, { status: 404 });
+    if (!user) return NextResponse.json({ success: false, data: null });
 
-    return NextResponse.json({ success: true, data: user }, { status: 200 });
+    return NextResponse.json({ success: true, data: user });
   } catch (error) {
     if (error instanceof Error)
       return NextResponse.json(
