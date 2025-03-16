@@ -1,24 +1,7 @@
 import { auth } from "@/auth";
+import { navItems } from "@/lib/routes";
 import NavbarItem from "./NavbarItem";
 
-const navItems = [
-  {
-    name: "Home",
-    href: "/",
-  },
-  {
-    name: "Contact",
-    href: "/contact",
-  },
-  {
-    name: "About",
-    href: "/about",
-  },
-  {
-    name: "SignUp",
-    href: "/auth",
-  },
-];
 interface PropType {
   className: string;
 }
@@ -30,7 +13,15 @@ export default async function NavItems({ className }: PropType) {
     >
       {navItems.map(({ href, name }, index) => {
         if (session && name === "SignUp") return null;
-        return <NavbarItem key={index} href={href} name={name} />;
+        return (
+          <NavbarItem
+            isAuthenticated={!!session?.user}
+            isMobile={false}
+            key={index}
+            href={href}
+            name={name}
+          />
+        );
       })}
     </ul>
   );

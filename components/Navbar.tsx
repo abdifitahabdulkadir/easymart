@@ -6,8 +6,7 @@ import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { FaSearch } from "react-icons/fa";
 import { GrFavorite } from "react-icons/gr";
-import { MdMenu } from "react-icons/md";
-import MobileVersionNavbar from "./MobileVersionNavbar";
+import { MobileNav } from "./MobileNav";
 import UserIcon from "./UserIcon";
 
 interface ProsType {
@@ -15,7 +14,6 @@ interface ProsType {
 }
 
 export default function Navbar({ children }: ProsType) {
-  const [isOpen, setIsOpen] = useState(false);
   const [search, setSearchInput] = useState("");
   const router = useRouter();
 
@@ -66,16 +64,8 @@ export default function Navbar({ children }: ProsType) {
           </div>
         </div>
 
-        <button
-          onClick={() => setIsOpen(!isOpen)}
-          className="order-2 text-xl font-bold md:order-3 lg:hidden"
-        >
-          <MdMenu />
-        </button>
+        <MobileNav />
       </div>
-
-      {/* mobil phones */}
-      {isOpen && <MobileVersionNavbar openHanlder={() => setIsOpen(false)} />}
     </section>
   );
 }

@@ -2,7 +2,7 @@ import MoveToCart from "@/components/MoveToCart";
 import ProductItem from "@/components/ProductItem";
 import { PrimaryTitleGenerator } from "@/components/Titles";
 import { exploreProducts } from "@/lib";
-import { decodeProductCategory } from "@/lib/util";
+import { decodeProductCategory } from "@/lib/utils";
 import { getWishlistsItems } from "@/lib/wishlist.action";
 import Image from "next/image";
 import Link from "next/link";

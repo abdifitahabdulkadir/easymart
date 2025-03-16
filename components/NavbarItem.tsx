@@ -1,14 +1,24 @@
 "use client";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { SheetClose } from "./ui/sheet";
 
 interface Props {
   href: string;
+  isMobile?: boolean;
   name: string;
+  isAuthenticated: boolean;
 }
-export default function NavbarItem({ name, href }: Props) {
+
+export default function NavbarItem({
+  name,
+  isMobile,
+  isAuthenticated,
+  href,
+}: Props) {
   const pathName = usePathname();
-  return (
+  if (isAuthenticated && name == "SignUp") return null;
+  const content = (
     <li className="font-normal">
       <Link
         href={href}
@@ -22,4 +32,5 @@ export default function NavbarItem({ name, href }: Props) {
       </Link>
     </li>
   );
+  return isMobile ? <SheetClose asChild>{content}</SheetClose> : content;
 }

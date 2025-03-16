@@ -1,6 +1,6 @@
 import { getCartItems } from "@/lib/cart.action";
 import { popois } from "@/lib/font";
-import { decodeProductCategory } from "@/lib/util";
+import { decodeProductCategory } from "@/lib/utils";
 import Image from "next/image";
 import Link from "next/link";
 import CartProductItem from "./CartProductItem";
