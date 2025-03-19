@@ -24,7 +24,12 @@ export default function AddToCartButton({
 
   function handleAddToCart() {
     if (!session.data) {
-      toast("You need to logic to make such changes", { type: "warning" });
+      toast(
+        "You need to authenticated to make such changes or Refersh if you have logged In soon",
+        {
+          type: "warning",
+        },
+      );
       return;
     }
     startTransition(async () => {
