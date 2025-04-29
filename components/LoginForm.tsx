@@ -4,11 +4,12 @@ import { SignInSchema } from "@/lib/validations";
 import { zodResolver } from "@hookform/resolvers/zod";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { useTransition } from "react";
+import { useState, useTransition } from "react";
 import { useForm } from "react-hook-form";
 import { toast } from "react-toastify";
 import { z } from "zod";
 import FormInputWrapper from "./FormInputWrapper";
+import { EyeOff, Eye } from "lucide-react";
 interface ProsType {
   handleClick: VoidFunction;
 }
@@ -27,6 +28,7 @@ export default function LoginForm({ handleClick }: ProsType) {
   });
   const [isSubmitting, startTranstion] = useTransition();
   const router = useRouter();
+  const [showPassword, setShowPassword] = useState(false);
   function handleFormSubmit(data: z.infer<typeof SignInSchema>) {
     startTranstion(async () => {
       const result = await signInWithCredentials(data);
@@ -37,6 +39,8 @@ export default function LoginForm({ handleClick }: ProsType) {
       toast(result.message, { type: "error" });
     });
   }
+
+  console.log(showPassword);
 
   return (
     <div
@@ -61,18 +65,31 @@ export default function LoginForm({ handleClick }: ProsType) {
         </FormInputWrapper>
 
         <FormInputWrapper message={errors.password?.message ?? ""}>
-          <input
-            type="text"
-            {...register("password")}
-            placeholder="Password"
-            className="px-3ring-black/30 w-full border-b-2 border-black/30 py-2 text-black outline-none placeholder:text-sm placeholder:text-black/30 lg:w-[70%]"
-          />
+          <div className="relative flex w-full items-center gap-2">
+            <input
+              type={showPassword ? "text" : "password"}
+              {...register("password")}
+              placeholder="Password"
+              className="w-full border-b-2 border-black/30 px-3 py-2 text-black outline-none ring-black/30 placeholder:text-sm placeholder:text-black/30 lg:w-[70%]"
+            />
+            {showPassword ? (
+              <EyeOff
+                onClick={() => setShowPassword(false)}
+                className="absolute right-1 z-20 size-7 cursor-pointer opacity-55"
+              />
+            ) : (
+              <Eye
+                onClick={() => setShowPassword(true)}
+                className="absolute right-1 z-20 size-7 cursor-pointer opacity-55"
+              />
+            )}
+          </div>
         </FormInputWrapper>
 
         <div className="flex w-full flex-wrap items-center justify-between gap-x-4 gap-y-3 lg:flex-nowrap">
           <button
             disabled={isSubmitting}
-            className="flex w-full cursor-pointer items-center justify-center rounded-[4px] bg-teritiaryOrangeColor py-4 text-white transition-all duration-300 hover:scale-[.89] hover:bg-secondaryLightGraryColor hover:text-black"
+            className="flex w-full cursor-pointer items-center justify-center rounded-[4px] bg-teritiaryOrangeColor py-4 text-white opacity-55 transition-all duration-300 hover:scale-[.89] hover:bg-secondaryLightGraryColor hover:text-black"
           >
             {isSubmitting ? "Loging...." : "Login"}
           </button>

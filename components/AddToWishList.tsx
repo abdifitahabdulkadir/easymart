@@ -37,7 +37,7 @@ export default function AddToWishList({
         price,
       });
       if (result?.success) {
-        toast("Item added to cart", { type: "success" });
+        toast("Item added to wishlist", { type: "success" });
         return;
       }
       toast(result.message, { type: "error" });

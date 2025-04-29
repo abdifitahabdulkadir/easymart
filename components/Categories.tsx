@@ -7,6 +7,7 @@ import { LuGamepad } from "react-icons/lu";
 import { PiHeadphones } from "react-icons/pi";
 import DoubleArrows from "./DoubleArrows";
 import { PrimaryTitleGenerator, SecondaryTitleGenerator } from "./Titles";
+import Link from "next/link";
 
 const categores = [
   {
@@ -75,7 +76,8 @@ export default function Categories() {
       <div className="mt-8 grid w-full grid-cols-2 flex-wrap items-center gap-x-3 gap-y-3 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6">
         {categores.map(({ name, icon, isSelected }, index) => {
           return (
-            <div
+            <Link
+              href={"#explore"}
               key={String(name + index)}
               className={`group flex h-40 min-h-fit min-w-fit cursor-pointer flex-col items-center justify-center gap-y-2 rounded-[4px] border-2 border-black/20 transition-all duration-300 hover:border-none hover:bg-teritiaryOrangeColor ${
                 isSelected && "border-none bg-teritiaryOrangeColor text-white"
@@ -83,7 +85,7 @@ export default function Categories() {
             >
               {icon}
               <h5 className="group-hover:text-white">{name}</h5>
-            </div>
+            </Link>
           );
         })}
       </div>

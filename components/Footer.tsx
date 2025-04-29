@@ -10,9 +10,9 @@ import { RxInstagramLogo } from "react-icons/rx";
 import FooterLinkItem from "./FooterLinkItem";
 
 const supportLinks = [
-  "Hodan, Mogadisho, Somalia",
+  "Rajkot, Gujurat, India",
   "easymart@gmail.com",
-  "+88015-88888-9999",
+  "+91 1234567890",
 ];
 
 const accountLinks = [
@@ -93,7 +93,7 @@ export default function Footer() {
         className={`flex w-fit items-center gap-x-2 font-extralight text-white/40 ${popois.className} pb-5 pt-6`}
       >
         <LiaCopyrightSolid />
-        abdifitahabdulkadir. All rights reserved | 2024
+        easymart Team. All rights reserved | 2025
       </p>
     </footer>
   );

@@ -1,4 +1,5 @@
 "use client";
+import Link from "next/link";
 import { MdOutlineNavigateNext } from "react-icons/md";
 const sideBarItems = [
   {
@@ -53,7 +54,9 @@ export default function HeroSidebar() {
       <ul className="flex flex-col items-start gap-y-2 py-5">
         {sideBarItems.map(({ text, showArrow }, index) => {
           return (
-            <li
+            <Link
+              scroll={true}
+              href={"#explore"}
               key={index}
               className="group flex cursor-pointer items-center gap-x-2 font-normal text-black transition-all duration-300 hover:translate-x-2 hover:font-bold"
             >
@@ -61,7 +64,7 @@ export default function HeroSidebar() {
               {showArrow && (
                 <MdOutlineNavigateNext className="transition-all duration-200 group-hover:scale-[1.1] group-hover:text-teritiaryLightOrangeColor" />
               )}
-            </li>
+            </Link>
           );
         })}
       </ul>

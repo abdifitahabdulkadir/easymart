@@ -3,11 +3,12 @@ import { popois } from "@/lib/font";
 import { SignUpSchema } from "@/lib/validations";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useRouter } from "next/navigation";
-import { useTransition } from "react";
+import { useState, useTransition } from "react";
 import { useForm } from "react-hook-form";
 import { toast } from "react-toastify";
 import { z } from "zod";
 import FormInputWrapper from "./FormInputWrapper";
+import { EyeOff, Eye } from "lucide-react";
 interface ProsType {
   handleClick: VoidFunction;
 }
@@ -27,6 +28,7 @@ export default function RegisterForm({ handleClick }: ProsType) {
   });
   const [isSubmitting, startTranstion] = useTransition();
   const router = useRouter();
+  const [showPassword, setShowPassword] = useState(false);
   function handleFormSubmit(data: z.infer<typeof SignUpSchema>) {
     startTranstion(async () => {
       const result = await signUpWithCrendentials(data);
@@ -69,12 +71,25 @@ export default function RegisterForm({ handleClick }: ProsType) {
         </FormInputWrapper>
 
         <FormInputWrapper message={errors.password?.message ?? ""}>
-          <input
-            type="text"
-            {...register("password")}
-            placeholder="Password"
-            className="px-3ring-black/30 w-full border-b-2 border-black/30 py-2 text-black outline-none placeholder:text-sm placeholder:text-black/30"
-          />
+          <div className="relative flex w-full items-center gap-2">
+            <input
+              type={showPassword ? "text" : "password"}
+              {...register("password")}
+              placeholder="Password"
+              className="px-3ring-black/30 w-full border-b-2 border-black/30 py-2 text-black outline-none placeholder:text-sm placeholder:text-black/30"
+            />
+            {showPassword ? (
+              <EyeOff
+                onClick={() => setShowPassword(false)}
+                className="absolute right-1 z-20 size-7 cursor-pointer opacity-55"
+              />
+            ) : (
+              <Eye
+                onClick={() => setShowPassword(true)}
+                className="absolute right-1 z-20 size-7 cursor-pointer opacity-55"
+              />
+            )}
+          </div>
         </FormInputWrapper>
 
         <button
